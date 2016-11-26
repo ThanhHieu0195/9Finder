@@ -216,3 +216,22 @@ div.desc {
     }
 }
 
+.footer{
+    background-image: url('../../image/bg_footer.png');
+		background-repeat: no-repeat;
+		background-size: cover;
+		color: white;
+		margin: 0px;
+		padding: 50px;
+}
+.footer h3 {
+	color: #C9FFE5;
+	font-size: 27px;
+}
+.footer a {
+	color: #D0FF14;
+	font-size: 22px;
+}
+.footer a:hover {
+	color: aqua;
+}
