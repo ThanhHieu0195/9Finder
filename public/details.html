@@ -1,124 +1,129 @@
 
-<nav class="navbar navbar-defaul navbar-fixed-top" style="background-color: #4CAF50;">
+<nav class="navbar navbar-defaul navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="#/">Logo</a>
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
       </button>
     </div>
-		<div class="collapse navbar-collapse" id="myNavbar">
-    <div class="col-md-3">
-			<input type="text" class="form-control" id="chosen" ng-model="service_name" ng-change="choose_service_detail()" size="30" placeholder="I'm looking for..." required list="itemList" style="margin: 10px;">
-			<datalist id="itemList">
-				<option ng-repeat="obj in listtypeservice" value="{{obj.name}}">
-		</datalist>
-		</div>
-		<div class="col-md-3">
-			<div class="input-group">
-      <input type="text" class="form-control" value ="Ho Chi Minh City" required style="margin: 10px;">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button">
-					<span class="glyphicon glyphicon-search"></span>
-				</button>
-      </span>
-    </div>
-		</div>
-		<div class="col-md-3"></div>
-		<div class="col-md-2">
-			<img src='https://freeiconshop.com/files/edd/person-flat.png' style="width: 40px; height: auto; margin: 10px;"/>
-			<span style="font-size: 15px; color: white">
-				User name
-			</span>
-		</div>
-	</div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <div class="col-md-3">
+       <input type="text" class="form-control" id="chosen" ng-model="service_name" ng-change="choose_service_detail()" size="30" placeholder="I'm looking for..." required list="itemList" style="margin: 10px;">
+       <datalist id="itemList">
+        <option ng-repeat="obj in listtypeservice" value="{{obj.name}}">
+        </datalist>
+      </div>
+      <div class="col-md-3">
+       <div class="input-group">
+        <input type="text" class="form-control" value ="Ho Chi Minh City" required style="margin: 10px;">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button">
+           <span class="glyphicon glyphicon-search"></span>
+         </button>
+       </span>
+     </div>
+   </div>
+   <div class="col-md-3"></div>
+   <div class="col-md-2">
+        <!-- đã login -->
+        <div ng-if="account">
+            <div class="dropdown" id="menu1" data-toggle="dropdown">
+              <img src='https://freeiconshop.com/files/edd/person-flat.png' style="width: 40px; height: auto; margin: 10px;"/>
+              <span style="font-size: 15px; color: white">
+                {{account.username}}
+              </span>
+              <span class="caret"></span>
+            </div>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">User profile</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Settings</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" ng-click="logout()">Logout</a></li>
+            </ul>
+        </div>  
 
+        <div ng-if="!account" ng-click="pagelogin()">
+           <img src='https://freeiconshop.com/files/edd/person-flat.png' style="width: 40px; height: auto; margin: 10px;"/>
+           <span style="font-size: 15px; color: white">
+            User name
+          </span>
+        </div>
   </div>
+</div>
+
+</div>
 </nav>
 
-<div class="panel panel-default" style="margin-top: 50px; padding: 2px; background-color: #008000;">
+<div class="panel panel-default" style="margin-top: 50px; padding: 2px;">
   <div class="panel-body">
     <div class="row listfind" style="margin: 30px;">
-        <a class="btn btn-info btn-lg" ng-click="service_food()">
-          <span class="glyphicon glyphicon-cutlery"></span> Food
-        </a>
-        <a class="btn btn-info btn-lg" ng-click="service_coffee()">
-          <span class="glyphicon glyphicon-tint"></span> Coffee
-        </a>
-        <a class="btn btn-info btn-lg" ng-click="service_nightlife()">
-          <span class="glyphicon glyphicon-glass"></span> Nightlife
-        </a>
-        <a class="btn btn-info btn-lg" ng-click="service_fun()">
-          <span class="glyphicon glyphicon-apple"></span> Fun
-        </a>
-        <a class="btn btn-info btn-lg" ng-click="service_shopping()">
-          <span class="glyphicon glyphicon-shopping-cart"></span> Shopping
-        </a>
-      </div>
+      <a class="btn btn-info btn-lg" ng-click="service_food()">
+        <span class="glyphicon glyphicon-cutlery"></span> Food
+      </a>
+      <a class="btn btn-info btn-lg" ng-click="service_coffee()">
+        <span class="glyphicon glyphicon-tint"></span> Coffee
+      </a>
+      <a class="btn btn-info btn-lg" ng-click="service_nightlife()">
+        <span class="glyphicon glyphicon-glass"></span> Nightlife
+      </a>
+      <a class="btn btn-info btn-lg" ng-click="service_fun()">
+        <span class="glyphicon glyphicon-apple"></span> Fun
+      </a>
+      <a class="btn btn-info btn-lg" ng-click="service_shopping()">
+        <span class="glyphicon glyphicon-shopping-cart"></span> Shopping
+      </a>
+    </div>
   </div>
 </div>
 
 <div class="container" style="padding-top: 5px;">
   <div class="row" style="margin-top: 30px;">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
-<body>
-  <div class="row">
-    <div class="panel panel-primary">
-     <div class="panel-heading">{{serviceName}}</div>
-     <div class="panel-body">
-       <div class="media">
-         <div class="media-left">
-           <img src="http://valaw.vn/data/images/lo-go-valaw.png" class="media-object" style="width:60px">
-         </div>
-         <div class="media-body">
-           <h4 class="media-heading">Find great places on the go.</h4>
-           <p>Discover what's nearby, search for what you're craving, and get deals and tips along the way.</p>
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+    <body>
+      <div class="row">
+        <div class="panel panel-primary">
+         <div class="panel-heading">{{serviceName}}</div>
+         <div class="panel-body">
+           <div class="media">
+             <div class="media-left">
+               <img src="http://valaw.vn/data/images/lo-go-valaw.png" class="media-object" style="width:60px">
+             </div>
+             <div class="media-body">
+               <h4 class="media-heading">Find great places on the go.</h4>
+               <p>Discover what's nearby, search for what you're craving, and get deals and tips along the way.</p>
+             </div>
+           </div>
          </div>
        </div>
      </div>
-   </div>
-  </div>
-<div class="row">
-<div class="col-md-6" style="color: white">
-    <!--<div class="w3-content w3-display-container" style="width: 600px;">
-      <img class="mySlides" src="http://www.w3schools.com/w3css/img_forest.jpg">
-      <img class="mySlides" src="http://www.w3schools.com/w3css/img_fjords.jpg">
-      <img class="mySlides" src="http://www.w3schools.com/w3css/img_lights.jpg">
-      <img class="mySlides" src="http://www.w3schools.com/w3css/img_mountains.jpg">
+     <div class="row">
+      <div class="col-md-6 carousel">
+          <img class="mySlides" src="https://irs0.4sqi.net/img/general/width960/4452803_bTNZlCk37xLJoSaBAxVU0xQcImrkPXUyJlSqXvfrJAA.jpg">
+          <img class="mySlides" src="https://irs0.4sqi.net/img/general/width960/mPjdem4204dA4fdmZLn33MM2QuGh5oHVNXdLYh7jSCw.jpg">
+          <img class="mySlides" src="https://irs0.4sqi.net/img/general/width960/vhJlmf5z2iUlk9waJgtleR23K5weVkI_K8QIW8l7d5Q.jpg">
+        <script>
+            var myIndex = 0;
+            carousel();
 
-      <a class="w3-btn-floating w3-display-left" onclick="plusDivs(-1)">&#10094;</a>
-      <a class="w3-btn-floating w3-display-right" onclick="plusDivs(1)">&#10095;</a>
-    </div>-->
-
-<div class="w3-content w3-section">
-  <img class="mySlides" src="https://irs0.4sqi.net/img/general/width960/4452803_bTNZlCk37xLJoSaBAxVU0xQcImrkPXUyJlSqXvfrJAA.jpg" style="height: 400px;">
-  <img class="mySlides" src="https://irs0.4sqi.net/img/general/width960/mPjdem4204dA4fdmZLn33MM2QuGh5oHVNXdLYh7jSCw.jpg" style="height: 400px;">
-  <img class="mySlides" src="https://irs0.4sqi.net/img/general/width960/vhJlmf5z2iUlk9waJgtleR23K5weVkI_K8QIW8l7d5Q.jpg" style="height: 400px;">
-</div>
-
-<script>
-var myIndex = 0;
-carousel();
-
-function carousel() {
-    var i;
-    var x = document.getElementsByClassName("mySlides");
-    for (i = 0; i < x.length; i++) {
-       x[i].style.display = "none";
-    }
-    myIndex++;
-    if (myIndex > x.length) {myIndex = 1}
-    x[myIndex-1].style.display = "block";
-    setTimeout(carousel, 4000); // Change image every 2 seconds
-}
-</script>
-  </div>
-  <input hidden="true" type="text" id="idservice" value="{{idservice}}">
-  <div class="col-md-6" style="color: white; border-radius: 25px; background-color: #008000;">
-    <div style="margin: 40px;">
+            function carousel() {
+              var i;
+              var x = document.getElementsByClassName("mySlides");
+              for (i = 0; i < x.length; i++) {
+               x[i].style.display = "none";
+             }
+             myIndex++;
+             if (myIndex > x.length) {myIndex = 1}
+              x[myIndex-1].style.display = "block";
+          setTimeout(carousel, 4000); // Change image every 2 seconds
+        }
+      </script>
+    </div>
+<input hidden="true" type="text" id="idservice" value="{{idservice}}">
+<div class="col-md-6 carousel-fun">
+  <div>
     <div class="media">
       <div class="media-left">
         <img src="https://ss3.4sqi.net/img/categories_v2/food/pizza_88.png" class="media-object" style="width:60px">
@@ -129,217 +134,217 @@ function carousel() {
         <h3>Pizza Place$$$$.</h3>
         <h3>{{serviceProvince}}</h3>
         <button type="button" class="btn btn-default">
-           <span class="glyphicon glyphicon glyphicon-bookmark"></span> Save
-         </button>
+         <span class="glyphicon glyphicon glyphicon-bookmark"></span> Save
+       </button>
 
-         <button type="button" class="btn btn-default">
-            <span class="glyphicon glyphicon-share"></span> Share
-          </button>
-          <h4>Rating <span class="label label-primary" id="rate">{{rating.scroce}}</span></h4>
-          <br>
+       <button type="button" class="btn btn-default">
+        <span class="glyphicon glyphicon-share"></span> Share
+      </button>
+      <h4>Rating <span class="label label-primary" id="rate">{{rating.scroce}}</span></h4>
+      <br>
 
-          <div class="rating" style="margin-top: 50px;">
+      <div class="rating" style="margin-top: 50px;">
 
-              <span><input type="radio" name="rating" id="str5" value="5"><label for="str5"></label></span>
-              <span><input type="radio" name="rating" id="str4" value="4"><label for="str4"></label></span>
-              <span><input type="radio" name="rating" id="str3" value="3"><label for="str3"></label></span>
-              <span><input type="radio" name="rating" id="str2" value="2"><label for="str2"></label></span>
-              <span><input type="radio" name="rating" id="str1" value="1"><label for="str1"></label></span>
-          </div>
-          <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
-          <script type="text/javascript">
-          $(document).ready(function(){
+        <span><input type="radio" name="rating" id="str5" value="5"><label for="str5"></label></span>
+        <span><input type="radio" name="rating" id="str4" value="4"><label for="str4"></label></span>
+        <span><input type="radio" name="rating" id="str3" value="3"><label for="str3"></label></span>
+        <span><input type="radio" name="rating" id="str2" value="2"><label for="str2"></label></span>
+        <span><input type="radio" name="rating" id="str1" value="1"><label for="str1"></label></span>
+      </div>
+      <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+      <script type="text/javascript">
+        $(document).ready(function(){
           //  Check Radio-box
-              $(".rating input:radio").attr("checked", false);
-              $('.rating input').click(function () {
-                  $(".rating span").removeClass('checked');
-                  $(this).parent().addClass('checked');
-              });
+          $(".rating input:radio").attr("checked", false);
+          $('.rating input').click(function () {
+            $(".rating span").removeClass('checked');
+            $(this).parent().addClass('checked');
+          });
 
-              $('input:radio').change(
-              function(){
-                var userRating = this.value;
-                $.post('index.php?c=rating&a=set_rating', {ln: ['service_code', 'score'], lv: [$('#idservice').val(), userRating]}, function(data, textStatus, xhr) {
-                  json = $.parseJSON(data);
-                  console.log(json);
-                  alert("Cảm ơn bạn đã đánh giá!");
-                });
+          $('input:radio').change(
+            function(){
+              var userRating = this.value;
+              $.post('index.php?c=rating&a=set_rating', {ln: ['service_code', 'score'], lv: [$('#idservice').val(), userRating]}, function(data, textStatus, xhr) {
+                json = $.parseJSON(data);
+                console.log(json);
+                alert("Cảm ơn bạn đã đánh giá!");
+              });
                   // lấy rating cho 1 địa điểm
                   $.get('index.php?c=rating&a=get_rating_medium&ln=service_code&lv=' + $('#idservice').val(), function(data, textStatus, xhr) {
                     json = $.parseJSON(data);
                     console.log(json);
                     document.getElementById("rate").innerHTML = json.data.scroce;
                   }); 
-              });
-          });
-          </script>
-      </div>
+                });
+        });
+      </script>
     </div>
   </div>
-  </div>
+</div>
+</div>
 </div>
 
 <div class="row">
   <div class="container">
-  <h2>About</h2>
+    <h2>About</h2>
 
-  <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#details#home">Photos <span class="label label-primary">101</span></a></li>
-    <li><a data-toggle="tab" href="#details#menu1">Tips <span class="label label-primary">102</span</a></li>
-  </ul>
+    <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" href="#details#home">Photos <span class="label label-primary">101</span></a></li>
+      <li><a data-toggle="tab" href="#details#menu1">Tips <span class="label label-primary">102</span</a></li>
+    </ul>
 
-<div class="row">
-  <div class="col-md-9">
-  <div class="tab-content" style="margin: 30px;">
-    <div id="home" class="tab-pane fade in active">
-      <div class="row" style="margin: 30px;">
-       <button class="btn btn-danger" type="button">
-          <span class="glyphicon glyphicon-camera"></span>
-        Add a photo here
-     </button>
-   </div>
-      <div class="responsive">
-    <div class="img">
-      <a data-toggle="modal" data-target="#imgModal">
-        <img src="http://www.w3schools.com/css/img_fjords.jpg" alt="Trolltunga Norway" width="300" height="200">
-      </a>
-      <div class="desc" style="background-color: #0018A8; color: white;">Add a description of the image here</div>
-    </div>
-  </div>
-  <!-- Modal -->
- <div class="modal fade" id="imgModal" role="dialog" style="top: 10%;">
-   <div class="modal-dialog">
+    <div class="row">
+      <div class="col-md-9">
+        <div class="tab-content" style="margin: 30px;">
+          <div id="home" class="tab-pane fade in active">
+            <div class="row" style="margin: 30px;">
+             <button class="btn btn-danger" type="button">
+              <span class="glyphicon glyphicon-camera"></span>
+              Add a photo here
+            </button>
+          </div>
+          <div class="responsive">
+            <div class="img">
+              <a data-toggle="modal" data-target="#imgModal">
+                <img src="http://www.w3schools.com/css/img_fjords.jpg" alt="Trolltunga Norway" width="300" height="200">
+              </a>
+              <div class="desc" style="background-color: #0018A8; color: white;">Add a description of the image here</div>
+            </div>
+          </div>
+          <!-- Modal -->
+          <div class="modal fade" id="imgModal" role="dialog" style="top: 10%;">
+           <div class="modal-dialog">
 
-     <!-- Modal content-->
-     <div class="modal-content">
-       <div class="modal-header">
-         <button type="button" class="close" data-dismiss="modal">&times;</button>
-       </div>
-       <div class="modal-body">
-        <img src="http://www.w3schools.com/css/img_fjords.jpg" alt="Trolltunga Norway" width="100%">
-       </div>
+             <!-- Modal content-->
+             <div class="modal-content">
+               <div class="modal-header">
+                 <button type="button" class="close" data-dismiss="modal">&times;</button>
+               </div>
+               <div class="modal-body">
+                <img src="http://www.w3schools.com/css/img_fjords.jpg" alt="Trolltunga Norway" width="100%">
+              </div>
 
-       <div class="modal-footer">
-         <input type="text" class="modal-title form-control" value="Add a description of the image" style="margin-bottom: 10px;"></input>
-         <button type="button" class="btn btn-primary">
-            <span class="glyphicon glyphicon-floppy-save"></span> Save
-         </button>
-         <button type="button" class="btn btn-danger">
-           <span class="glyphicon glyphicon-remove"></span> Delete
-         </button>
+              <div class="modal-footer">
+               <input type="text" class="modal-title form-control" value="Add a description of the image" style="margin-bottom: 10px;"></input>
+               <button type="button" class="btn btn-primary">
+                <span class="glyphicon glyphicon-floppy-save"></span> Save
+              </button>
+              <button type="button" class="btn btn-danger">
+               <span class="glyphicon glyphicon-remove"></span> Delete
+             </button>
+           </div>
+         </div>
+
        </div>
      </div>
 
-   </div>
- </div>
-
-<div ng-repeat="photo in photos">
-  <div class="responsive">
-    <div class="img">
-      <a target="_blank" href="{{photo}}">
-        <img src="{{photo}}" alt="Forest" width="600" height="400">
-      </a>
-      <div class="desc" style="background-color: #0018A8; color: white;">Add a description of the image here</div>
+     <div ng-repeat="photo in photos">
+      <div class="responsive">
+        <div class="img">
+          <a target="_blank" href="{{photo}}">
+            <img src="{{photo}}" alt="Forest" width="600" height="400">
+          </a>
+          <div class="desc" style="background-color: #0018A8; color: white;">Add a description of the image here</div>
+        </div>
+      </div>
     </div>
+
+
   </div>
-</div>
-
-
-    </div>
-    <div id="menu1" class="tab-pane fade ">
-      <div class="panel panel-default" style="padding: 10px;">
-        <div class="panel-body">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="media">
-                <div class="media-left">
-                  <img src="http://www.w3schools.com/bootstrap/img_avatar1.png" class="media-object" style="width:60px">
-                </div>
-                <div class="media-body">
-                  <h4 class="media-heading">Left-aligned</h4>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                </div>
+  <div id="menu1" class="tab-pane fade ">
+    <div class="panel panel-default" style="padding: 10px;">
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="media">
+              <div class="media-left">
+                <img src="http://www.w3schools.com/bootstrap/img_avatar1.png" class="media-object" style="width:60px">
+              </div>
+              <div class="media-body">
+                <h4 class="media-heading">Left-aligned</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="media">
-                <div class="media-left">
-                  <img src="http://www.w3schools.com/bootstrap/img_avatar1.png" class="media-object" style="width:60px">
-                </div>
-                <div class="media-body">
-                  <h4 class="media-heading">Left-aligned</h4>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                </div>
+          </div>
+          <div class="col-md-6">
+            <div class="media">
+              <div class="media-left">
+                <img src="http://www.w3schools.com/bootstrap/img_avatar1.png" class="media-object" style="width:60px">
+              </div>
+              <div class="media-body">
+                <h4 class="media-heading">Left-aligned</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
               </div>
             </div>
-            </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="media">
-                <div class="media-left">
-                  <img src="http://www.w3schools.com/bootstrap/img_avatar1.png" class="media-object" style="width:60px">
-                </div>
-                <div class="media-body">
-                  <h4 class="media-heading">Left-aligned</h4>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="media">
+              <div class="media-left">
+                <img src="http://www.w3schools.com/bootstrap/img_avatar1.png" class="media-object" style="width:60px">
+              </div>
+              <div class="media-body">
+                <h4 class="media-heading">Left-aligned</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="media">
-                <div class="media-left">
-                  <img src="http://www.w3schools.com/bootstrap/img_avatar1.png" class="media-object" style="width:60px">
-                </div>
-                <div class="media-body">
-                  <h4 class="media-heading">Left-aligned</h4>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                </div>
+          </div>
+          <div class="col-md-6">
+            <div class="media">
+              <div class="media-left">
+                <img src="http://www.w3schools.com/bootstrap/img_avatar1.png" class="media-object" style="width:60px">
+              </div>
+              <div class="media-body">
+                <h4 class="media-heading">Left-aligned</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="panel panel-info">
-       <div class="panel-heading">
-         <div class="row">
+    </div>
+    <div class="panel panel-info">
+     <div class="panel-heading">
+       <div class="row">
          <div class="col-md-6">
-         <span class="glyphicon glyphicon-tags"></span> 102 tips and reviews
-       </div>
+           <span class="glyphicon glyphicon-tags"></span> 102 tips and reviews
+         </div>
          <div class="col-md-6" >
-            <div class="right-inner-addon">
-                <i class="fa fa-search" aria-hidden="true"></i>
-                <input type="search"
-                       class="form-control"
-                       placeholder="Search for tips" />
-            </div>
+          <div class="right-inner-addon">
+            <i class="fa fa-search" aria-hidden="true"></i>
+            <input type="search"
+            class="form-control"
+            placeholder="Search for tips" />
           </div>
-          </div>
-       </div>
-       <div class="panel-body">Filter: <code>massage</code> <code>spa</code> <code>spacious</code> <code>ms thuy</code> <code>quiet</code> <code>(12 more)</code></div>
-   </div>
-   <div class="panel panel-default" style="padding: 10px;">
-     <div class="media">
-          <div class="media-left">
-            <img src="https://freeiconshop.com/files/edd/person-flat.png" class="media-object" style="width:45px">
-          </div>
-          <div class="media-body">
-              <textarea class="form-control" rows="5" id="comment" placeholder="Leave a tip for others..."></textarea>
-              <input type="submit" class="btn btn-info" value="Post" style="margin-top: 10px;" ng-click="comment()"></input>
-              <button type="button" class="btn btn-danger right" style="margin-top: 10px;"  data-toggle="tooltip" data-placement="bottom" title="Add a photo">
-                <span class="glyphicon glyphicon-camera"></span>
-              </button>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body">Filter: <code>massage</code> <code>spa</code> <code>spacious</code> <code>ms thuy</code> <code>quiet</code> <code>(12 more)</code></div>
+  </div>
+  <div class="panel panel-default" style="padding: 10px;">
+   <div class="media">
+    <div class="media-left">
+      <img src="https://freeiconshop.com/files/edd/person-flat.png" class="media-object" style="width:45px">
+    </div>
+    <div class="media-body">
+      <textarea class="form-control" rows="5" id="comment" placeholder="Leave a tip for others..."></textarea>
+      <input type="submit" class="btn btn-info" value="Post" style="margin-top: 10px;" ng-click="comment()"></input>
+      <button type="button" class="btn btn-danger right" style="margin-top: 10px;"  data-toggle="tooltip" data-placement="bottom" title="Add a photo">
+        <span class="glyphicon glyphicon-camera"></span>
+      </button>
               <!-- <script>
                 $(document).ready(function(){
                     $('[data-toggle="tooltip"]').tooltip();
                 });
               </script> -->
+            </div>
           </div>
         </div>
-   </div>
 
-   <div class="panel panel-default" style="padding: 10px;" ng-repeat="comment in comments">
+        <div class="panel panel-default" style="padding: 10px;" ng-repeat="comment in comments">
 
-     <div class="media">
+         <div class="media">
           <div class="media-left">
             <img src="http://www.w3schools.com/bootstrap/img_avatar1.png" class="media-object" style="width:45px">
           </div>
@@ -350,117 +355,116 @@ function carousel() {
           </div>
         </div>
         <hr>
-   </div>
-  </div>
+      </div>
     </div>
-  </div>
-  <div class="col-md-3" style="margin-top: 30px;">
-    <div class="panel panel-default" style="padding: 10px;">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d26081603.294420466!2d-95.677068!3d37.06250000000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1svi!2s!4v1477934488875" width="240" height="180" frameborder="0" style="border:0" allowfullscreen></iframe>
-
-        <div class="media">
-             <div class="media-left">
-               <span class="glyphicon glyphicon-home"></span>
-             </div>
-             <div class="media-body">
-               <h4 class="media-heading">Pizza 4P's</h4>
-               <p>133 Bui Vien (Pham Ngu Lao)<br>
-                    Ho Chi Minh City<br>
-                    Ho Chi Minh City<br>
-              </p>
-             </div>
-           </div>
-           <hr>
-
-           <div class="media">
-                <div class="media-left">
-                  <span class="glyphicon glyphicon-exclamation-sign"></span>
-                </div>
-                <div class="media-body">
-                  <p>
-                  Welcome to the AAA Spa, open from 9 to 23:30 everyday. Our address...
-                 </p>
-                </div>
-              </div>
-              <hr>
-
-              <div class="media">
-                   <div class="media-left">
-                     <span class="glyphicon glyphicon-dashboard"></span>
-                   </div>
-                   <div class="media-body">
-                     <p class="text-danger">
-                     Closed until 9:00 AM tomorrow
-                    </p>
-                   </div>
-                 </div>
-                 <hr>
-
-                 <div class="media">
-                      <div class="media-left">
-                        <span class="glyphicon glyphicon-earphone"></span>
-                      </div>
-                      <div class="media-body">
-                        <p >
-                        08 3838 5428
-                       </p>
-                      </div>
-                    </div>
-                    <hr>
-
-                    <div class="media">
-                         <div class="media-left">
-                           <span class="glyphicon glyphicon-globe"></span>
-                         </div>
-                         <div class="media-body">
-                           <a href="http://pizza4ps.com/">http://pizza4ps.com/</a>
-                         </div>
-                       </div>
-                       <hr>
-
-                       <div class="media">
-                            <div class="media-left">
-                              <span>reservation</span>
-                            </div>
-                            <div class="media-body">
-                            <p>yes</p>
-                            </div>
-                      </div>
-
-                      <div class="media">
-                           <div class="media-left">
-                             <p>credit card</p>
-                           </div>
-                           <div class="media-body">
-                           <p>yes</p>
-                           </div>
-                     </div>
-
   </div>
 </div>
+<div class="col-md-3" style="margin-top: 30px;">
+  <div class="panel panel-default" style="padding: 10px;">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d26081603.294420466!2d-95.677068!3d37.06250000000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1svi!2s!4v1477934488875" width="240" height="180" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+    <div class="media">
+     <div class="media-left">
+       <span class="glyphicon glyphicon-home"></span>
+     </div>
+     <div class="media-body">
+       <h4 class="media-heading">Pizza 4P's</h4>
+       <p>133 Bui Vien (Pham Ngu Lao)<br>
+        Ho Chi Minh City<br>
+        Ho Chi Minh City<br>
+      </p>
     </div>
   </div>
+  <hr>
+
+  <div class="media">
+    <div class="media-left">
+      <span class="glyphicon glyphicon-exclamation-sign"></span>
+    </div>
+    <div class="media-body">
+      <p>
+        Welcome to the AAA Spa, open from 9 to 23:30 everyday. Our address...
+      </p>
+    </div>
+  </div>
+  <hr>
+
+  <div class="media">
+   <div class="media-left">
+     <span class="glyphicon glyphicon-dashboard"></span>
+   </div>
+   <div class="media-body">
+     <p class="text-danger">
+       Closed until 9:00 AM tomorrow
+     </p>
+   </div>
+ </div>
+ <hr>
+
+ <div class="media">
+  <div class="media-left">
+    <span class="glyphicon glyphicon-earphone"></span>
+  </div>
+  <div class="media-body">
+    <p >
+      08 3838 5428
+    </p>
+  </div>
+</div>
+<hr>
+
+<div class="media">
+ <div class="media-left">
+   <span class="glyphicon glyphicon-globe"></span>
+ </div>
+ <div class="media-body">
+   <a href="http://pizza4ps.com/">http://pizza4ps.com/</a>
+ </div>
+</div>
+<hr>
+
+<div class="media">
+  <div class="media-left">
+    <span>reservation</span>
+  </div>
+  <div class="media-body">
+    <p>yes</p>
+  </div>
+</div>
+
+<div class="media">
+ <div class="media-left">
+   <p>credit card</p>
+ </div>
+ <div class="media-body">
+   <p>yes</p>
+ </div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 
 <script>
-var slideIndex = 1;
-showDivs(slideIndex);
+  var slideIndex = 1;
+  showDivs(slideIndex);
 
-function plusDivs(n) {
-  showDivs(slideIndex += n);
-}
-
-function showDivs(n) {
-  var i;
-  var x = document.getElementsByClassName("mySlides");
-  if (n > x.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = x.length}
-  for (i = 0; i < x.length; i++) {
-     x[i].style.display = "none";
+  function plusDivs(n) {
+    showDivs(slideIndex += n);
   }
-  x[slideIndex-1].style.display = "block";
-}
-</script>
-  </div>
+
+  function showDivs(n) {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    if (n > x.length) {slideIndex = 1}
+      if (n < 1) {slideIndex = x.length}
+        for (i = 0; i < x.length; i++) {
+         x[i].style.display = "none";
+       }
+       x[slideIndex-1].style.display = "block";
+     }
+   </script>
+ </div>
 </div>
