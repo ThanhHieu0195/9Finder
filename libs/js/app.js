@@ -75,6 +75,10 @@ myApp.controller('Abc', function($scope, $route, $templateCache, $location){
 		});
 	};
 
+	$scope.pagelogin = function() {
+		window.location = "#login";
+	}
+
 	$scope.logout = function() {
 		$.get('index.php?c=login&a=logout', function(data, textStatus, xhr) {
 			json = $.parseJSON(data);

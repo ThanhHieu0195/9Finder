@@ -28,10 +28,28 @@
    </div>
    <div class="col-md-3"></div>
    <div class="col-md-2">
-     <img src='https://freeiconshop.com/files/edd/person-flat.png' style="width: 40px; height: auto; margin: 10px;"/>
-     <span style="font-size: 15px; color: white">
-      User name
-    </span>
+        <!-- đã login -->
+        <div ng-if="account">
+            <div class="dropdown" id="menu1" data-toggle="dropdown">
+              <img src='https://freeiconshop.com/files/edd/person-flat.png' style="width: 40px; height: auto; margin: 10px;"/>
+              <span style="font-size: 15px; color: white">
+                {{account.username}}
+              </span>
+              <span class="caret"></span>
+            </div>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">User profile</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Settings</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="-1" ng-click="logout()">Logout</a></li>
+            </ul>
+        </div>  
+
+        <div ng-if="!account" ng-click="pagelogin()">
+           <img src='https://freeiconshop.com/files/edd/person-flat.png' style="width: 40px; height: auto; margin: 10px;"/>
+           <span style="font-size: 15px; color: white">
+            User name
+          </span>
+        </div>
   </div>
 </div>
 

@@ -207,6 +207,9 @@ div.desc {
     color: #FFFFFF;
 }
 
+.collapse li a {
+    color: rgba(40, 42, 101, 0.59);
+}
 
 .slider-banner {
     position: relative;
@@ -245,6 +248,6 @@ div.desc {
     }
 }
 
-.modal .panel {
+.modal .panel, .form .panel{
     background-color: #FFFFFF;
 }
