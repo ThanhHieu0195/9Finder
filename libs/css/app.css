@@ -27,7 +27,7 @@ body {
 }
 .navbar {
     margin-bottom: 0;
-    background-color: #384452;
+    background-color: #2276D7;
     z-index: 9999;
     border: 0;
     font-size: 12px !important;
@@ -226,7 +226,7 @@ div.desc {
 .slider-banner {
     position: relative;
     z-index: 0;
-    margin-top: -30px;
+    margin-top: -40px;
 }
 
 /*----------  css background  ----------*/
