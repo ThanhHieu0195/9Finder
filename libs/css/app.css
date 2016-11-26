@@ -182,7 +182,7 @@ div.img img {
 }
 
 div.desc {
-    padding: 15px;      
+    padding: 15px;
     text-align: center;
 }
 
@@ -262,7 +262,7 @@ div.desc {
 }
 
 .footer{
-    background-image: url('../../image/bg_footer.png');
+    background-image: url('../../image/contact-background.jpg');
 		background-repeat: no-repeat;
 		background-size: cover;
 		color: white;
@@ -288,8 +288,8 @@ div.desc {
 .form:hover .panel:hover {
     opacity: 1;
     box-shadow: 2px 2px 8px 1px #bce8f1;
-}  
+}
 
 .form:hover .panel {
     opacity: 0.5;
-}  
+}
