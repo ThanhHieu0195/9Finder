@@ -13,10 +13,16 @@ body {
 
 .jumbotron {
 	background-color: "rgb(67, 205, 128)";
-	height: 500px;
+	height: 700px;
 	color: #fff;
 }
 
+.jumbotron .container {
+    margin: 90px;
+}
+.jumbotron .container h1 {
+    text-shadow: 1px 1px 1px #000000;
+}
 .navbar {
     margin-bottom: 0;
     background-color: #4CAF50;
@@ -72,7 +78,7 @@ a, a:link, a:visited, a:active {
 }
 
 #myPage{
-	background-color: #4CAF50;
+	background-color: #4D7642;
 }
 
 .panel-heading {
@@ -171,3 +177,42 @@ div.desc {
 .navbar li a, .navbar .navbar-brand {
     color:  black !important;
 }
+
+
+.slider-banner {
+    position: relative;
+    z-index: 0;
+}
+
+/*----------  css background  ----------*/
+
+.slider-banner:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    animation: change_image 20s ease infinite alternate;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-image: url('http://static.businessinsider.com/image/49f08920796c7a16009f86ba/image.jpg');
+    opacity: 0.5;
+}
+
+@keyframes change_image {
+    25%{
+        background-image: url('http://wallpapercave.com/wp/wdDPg1T.png');
+    }
+    50%{
+        background-image: url('https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTG56UNjSPFPaCIJbv7uueKIT9BhDIkQKu1FjvTYgNvpBCZzB1e');
+    }
+    75%{
+        background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7sKTLn7Gya9DnKjjvn3tza3aUFsk5icD8HLoRkiXFmUNxKwOZFg');
+    }
+    100%{
+        background-image: url('http://static.businessinsider.com/image/49f08920796c7a16009f86ba/image.jpg');
+    }
+}
+
