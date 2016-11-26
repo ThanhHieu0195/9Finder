@@ -209,14 +209,12 @@ myApp.controller('Abc', function($scope, $route, $templateCache, $location){
 		// lấy rating cho 1 địa điểm
 		$.get('index.php?c=rating&a=get_rating_medium&ln=service_code&lv=1', function(data, textStatus, xhr) {
 			json = $.parseJSON(data);
-			console.log(json);
 			$scope.rating = json.data;
 		});
 		// trả về mãng link hình ảnh
 		$.get('index.php?c=service&a=load_album&ln=id_service&lv=' + service_id.toString(), function(data) {
 			json = $.parseJSON(data);
 			$scope.photos = json.data;
-			console.log(json.data);
 		});
 		window.location.hash = "#/details";
 	};

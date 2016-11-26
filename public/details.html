@@ -233,68 +233,16 @@ function carousel() {
    </div>
  </div>
 
+<div ng-repeat="photo in photos">
   <div class="responsive">
     <div class="img">
-      <a target="_blank" href="http://www.w3schools.com/css/img_forest.jpg">
-        <img src="http://www.w3schools.com/css/img_forest.jpg" alt="Forest" width="600" height="400">
+      <a target="_blank" href="{{photo}}">
+        <img src="{{photo}}" alt="Forest" width="600" height="400">
       </a>
       <div class="desc" style="background-color: #0018A8; color: white;">Add a description of the image here</div>
     </div>
   </div>
-
-  <div class="responsive">
-    <div class="img">
-      <a target="_blank" href="#">
-        <img src="http://www.w3schools.com/css/img_lights.jpg" alt="Northern Lights" width="600" height="400">
-      </a>
-      <div class="desc" style="background-color: #0018A8; color: white;">Add a description of the image here</div>
-    </div>
-  </div>
-
-  <div class="responsive">
-    <div class="img">
-      <a target="_blank" href="img_mountains.jpg">
-        <img src="http://www.w3schools.com/css/img_mountains.jpg" alt="Mountains" width="600" height="400">
-      </a>
-      <div class="desc" style="background-color: #0018A8; color: white;">Add a description of the image here</div>
-    </div>
-  </div>
-
-  <div class="responsive">
-    <div class="img">
-      <a target="_blank" href="http://www.w3schools.com/css/img_forest.jpg">
-        <img src="http://www.w3schools.com/css/img_forest.jpg" alt="Forest" width="600" height="400">
-      </a>
-      <div class="desc" style="background-color: #0018A8; color: white;">Add a description of the image here</div>
-    </div>
-  </div>
-
-  <div class="responsive">
-    <div class="img">
-      <a target="_blank" href="http://www.w3schools.com/css/img_forest.jpg">
-        <img src="http://www.w3schools.com/css/img_forest.jpg" alt="Forest" width="600" height="400">
-      </a>
-      <div class="desc" style="background-color: #0018A8; color: white;">Add a description of the image here</div>
-    </div>
-  </div>
-
-  <div class="responsive">
-    <div class="img">
-      <a target="_blank" href="http://www.w3schools.com/css/img_forest.jpg">
-        <img src="http://www.w3schools.com/css/img_forest.jpg" alt="Forest" width="600" height="400">
-      </a>
-      <div class="desc" style="background-color: #0018A8; color: white;">Add a description of the image here</div>
-    </div>
-  </div>
-
-  <div class="responsive">
-    <div class="img">
-      <a target="_blank" href="http://www.w3schools.com/css/img_forest.jpg">
-        <img src="http://www.w3schools.com/css/img_forest.jpg" alt="Forest" width="600" height="400">
-      </a>
-      <div class="desc" style="background-color: #0018A8; color: white;">Add a description of the image here</div>
-    </div>
-  </div>
+</div>
 
 
     </div>
