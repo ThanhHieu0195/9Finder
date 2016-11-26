@@ -11,15 +11,19 @@ body {
 }
 
 .jumbotron {
-	height: 600px;
+	height: 575px;
 	color: #fff;
+    padding: 0;
+    margin: 0;
 }
 
 .jumbotron .container {
-    margin: 90px;
+    margin-top: 90px;
 }
+
 .jumbotron .container h1 {
     text-shadow: 1px 1px 1px #000000;
+    margin-top: 100px;
 }
 .navbar {
     margin-bottom: 0;
@@ -63,6 +67,7 @@ body {
 
 .carousel-fun {
     margin: 10px 20px;
+    padding: 10px;
     background-color: rgba(51, 122, 183, 0.5);
     width: 51%;
     height: 400px;
@@ -115,6 +120,13 @@ a, a:link, a:visited, a:active {
 	color: blue;
 }
 
+.panel-heading a {
+
+}
+
+.panel-heading a:hover {
+    text-decoration: none;
+}
 .listfind a {
 	color: #fff;
 }
@@ -170,7 +182,7 @@ div.img img {
 }
 
 div.desc {
-    padding: 15px;
+    padding: 15px;      
     text-align: center;
 }
 
@@ -214,6 +226,7 @@ div.desc {
 .slider-banner {
     position: relative;
     z-index: 0;
+    margin-top: -30px;
 }
 
 /*----------  css background  ----------*/
@@ -271,3 +284,12 @@ div.desc {
 .modal .panel, .form .panel{
     background-color: #FFFFFF;
 }
+
+.form:hover .panel:hover {
+    opacity: 1;
+    box-shadow: 2px 2px 8px 1px #bce8f1;
+}  
+
+.form:hover .panel {
+    opacity: 0.5;
+}  

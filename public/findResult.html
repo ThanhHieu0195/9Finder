@@ -18,7 +18,7 @@
 				</div>
 				<div class="col-md-3">
 					<div class="input-group">
-						<input type="text" class="form-control" value ="Ho Chi Minh City" required style="margin: 10px;">
+						<input type="text" class="form-control" placeholder="Ho Chi Minh City" required style="margin: 10px;">
 						<span class="input-group-btn">
 							<button class="btn btn-default" type="button">
 								<span class="glyphicon glyphicon-search"></span>
@@ -59,10 +59,10 @@
 	</nav>
 <div class="container" style="padding-top: 50px;">
 	<div class="row" style="margin-top: 30px;">
-		<div class="col-md-6">
+		<div class="col-md-6 form">
 
-			<div class="panel panel-info" ng-repeat="service in services">
-			<div class="panel-heading"><a ng-click="details($event)" serviceid="{{service.id_service}}" servicename="{{service.name}}" serviceprovince="{{service.province}}" ng-mouseover="show_map(service.vido, service.kinhdo)">{{service.id_service}}. {{service.name}}</a></div>
+			<div class="panel panel-info" ng-repeat="service in services" ng-mouseover="show_map(service.vido, service.kinhdo)">
+			<div class="panel-heading"><a ng-click="details($event)" serviceid="{{service.id_service}}" servicename="{{service.name}}" serviceprovince="{{service.province}}">{{service.id_service}}. {{service.name}}</a></div>
 				<input type="text" hidden="true" class="nhi" id="service_id" value="{{service.id_service}}">
 				<div class="panel-body">
 					<div class="media">
@@ -84,7 +84,7 @@
 
 		<nav class="col-md-6">
 			<div class="nav nav-pills nav-stacked" data-spy="affix">
-				 <div id="map" style="height: 500px; width: 600px;"></div>
+				 <div id="map" style="height: 500px; width: 600px; position: fixed;"></div>
 			</div>
 		</nav>
 	</div>
