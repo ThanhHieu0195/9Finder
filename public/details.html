@@ -116,7 +116,7 @@ function carousel() {
 }
 </script>
   </div>
-
+  <input hidden="true" type="text" id="idservice" value="{{idservice}}">
   <div class="col-md-6" style="color: white; border-radius: 25px; background-color: #008000;">
     <div style="margin: 40px;">
     <div class="media">
@@ -135,7 +135,7 @@ function carousel() {
          <button type="button" class="btn btn-default">
             <span class="glyphicon glyphicon-share"></span> Share
           </button>
-          <h4>Rating <span class="label label-primary">{{rating.scroce}}</span></h4>
+          <h4>Rating <span class="label label-primary" id="rate">{{rating.scroce}}</span></h4>
           <br>
 
           <div class="rating" style="margin-top: 50px;">
@@ -158,8 +158,18 @@ function carousel() {
 
               $('input:radio').change(
               function(){
-                  var userRating = this.value;
-                  alert(userRating);
+                var userRating = this.value;
+                $.post('index.php?c=rating&a=set_rating', {ln: ['service_code', 'score'], lv: [$('#idservice').val(), userRating]}, function(data, textStatus, xhr) {
+                  json = $.parseJSON(data);
+                  console.log(json);
+                  alert("Cảm ơn bạn đã đánh giá!");
+                });
+                  // lấy rating cho 1 địa điểm
+                  $.get('index.php?c=rating&a=get_rating_medium&ln=service_code&lv=' + $('#idservice').val(), function(data, textStatus, xhr) {
+                    json = $.parseJSON(data);
+                    console.log(json);
+                    document.getElementById("rate").innerHTML = json.data.scroce;
+                  }); 
               });
           });
           </script>

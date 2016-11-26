@@ -198,6 +198,7 @@ myApp.controller('Abc', function($scope, $route, $templateCache, $location){
 	$scope.details = function(e){
 		//service_id = $('#service_id').val();
         service_id = $(e.currentTarget).attr("serviceid");
+        $scope.idservice = service_id;
         $scope.serviceName = $(e.currentTarget).attr("servicename");
         $scope.serviceProvince = $(e.currentTarget).attr("serviceprovince");
 		// lấy tất cả comment của dịch vụ
