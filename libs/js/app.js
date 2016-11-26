@@ -110,7 +110,6 @@ myApp.controller('Abc', function($scope, $route, $templateCache, $location){
 				json = $.parseJSON(data);
 				$scope.services = json.data;
 			});
-
 			window.location.hash = "#/search";
 		}
 	};
@@ -257,4 +256,17 @@ myApp.controller('Abc', function($scope, $route, $templateCache, $location){
 		$templateCache.remove(currentPageTemplate);
 		$route.reload();
 	};
+
+	/*===========================
+	=            map            =
+	===========================*/
+	
+	$scope.show_map = function(x, y) {
+		var x = parseFloat(x);
+		var y = parseFloat(y);
+		initMap(x, y, 15);
+	};
+	
+	/*=====  End of map  ======*/
+	
 });

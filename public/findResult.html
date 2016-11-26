@@ -41,7 +41,7 @@
 		<div class="col-md-6">
 
 			<div class="panel panel-info" ng-repeat="service in services">
-			<div class="panel-heading"><a ng-click="details($event)" serviceid="{{service.id_service}}" servicename="{{service.name}}" serviceprovince="{{service.province}}">{{service.id_service}}. {{service.name}}</a></div>
+			<div class="panel-heading"><a ng-click="details($event)" serviceid="{{service.id_service}}" servicename="{{service.name}}" serviceprovince="{{service.province}}" ng-mouseover="show_map(service.vido, service.kinhdo)">{{service.id_service}}. {{service.name}}</a></div>
 				<input type="text" hidden="true" class="nhi" id="service_id" value="{{service.id_service}}">
 				<div class="panel-body">
 					<div class="media">
@@ -63,8 +63,10 @@
 		
 		<nav class="col-md-6">
 			<div class="nav nav-pills nav-stacked" data-spy="affix">
-				<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d26081603.294420466!2d-95.677068!3d37.06250000000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1svi!2s!4v1477934488875" width="600" height="500" frameborder="0" style="border:0" allowfullscreen></iframe>
+				 <div id="map" style="height: 500px; width: 600px;"></div>
 			</div>
 		</nav>
 	</div>
 </div>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4yFaUjh6Vab5MXA-khLWUmU_QFx0hKoU&callback=initMap"></script>
+
