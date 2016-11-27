@@ -232,8 +232,29 @@ myApp.controller('Abc', function($scope, $route, $templateCache, $location){
 		//add comment
 		$.post('index.php?c=comment&a=addcomment', {ln: ['service_code', 'content'], lv: [service_id, comment]}, function(data, textStatus, xhr) {
 			json = $.parseJSON(data);
+			if (json.result == 1){
+				var listcomment = [];
+				$.get('index.php?c=comment&a=getallcomment&ln=service_code&lv=' + service_id.toString(), function(data) {
+					json = $.parseJSON(data);
+					listcomment = json.data;
+					console.log(listcomment);
+					$('#newcomment').html(
+						'<div class="media">' +
+						'<div class="media-left">' +
+						'<img src="http://www.w3schools.com/bootstrap/img_avatar1.png" class="media-object" style="width:45px">' +
+						'</div>' +
+						'<div class="media-body">' +
+						'<h4 class="media-heading">' + listcomment[0].comment_by + '<small><i>Posted on February 19, 2016 chua co du lieu</i></small></h4>' +
+						'<a class="glyphicon glyphicon-remove" style="float: right;" ng-click="remove_comment($event)" idcomment="' + listcomment[0].id_comment + '"></a>' +
+						'<p>' + listcomment[0].content + '</p>' +
+						'</div>' +
+						'</div>' +
+						'<hr><hr>' + $('#newcomment').html());
+				});
+			}
 		});
-		//load lai danh sach comment
+
+		/*//load lai danh sach comment
 		$.get('index.php?c=comment&a=getallcomment&ln=service_code&lv=' + service_id.toString(), function(data) {
 			json = $.parseJSON(data);
 			console.log(json.data);
@@ -241,8 +262,8 @@ myApp.controller('Abc', function($scope, $route, $templateCache, $location){
 		});
 		//window.location.hash = "#/details";
 		var currentPageTemplate = $route.current.templateUrl;
-			$templateCache.remove(currentPageTemplate);
-			$route.reload();
+		$templateCache.remove(currentPageTemplate);
+		$route.reload();*/
 	};
 
 	$scope.remove_comment = function(e){
