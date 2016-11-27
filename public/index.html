@@ -8,7 +8,6 @@
 </head>
 <body ng-controller="Abc" id="myPage">
 	<div ng-view></div>
-
 	<div class="footer">
 		<div class="row">
 			<div class="col-md-4">
@@ -37,7 +36,7 @@
 			Copyright © 2016 | All right reserved | Developed by group 9
 		</div>
 	</div>
-
+	<div id="loading" style="display: none;"></div>
 	<link rel="stylesheet" ng-href="{{cssapp}}">
 
 	<script src="//code.jquery.com/jquery.js"></script>
@@ -45,6 +44,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
 	<script type="text/javascript" src="libs/jquery-cookie/jquery.cookie.js"></script>
+	<script type="text/javascript" src="libs/bpopup.js"></script>
 	<script type="text/javascript" src="public/js/custom.js"></script>
 
 	<script src="libs/helper.js"></script>

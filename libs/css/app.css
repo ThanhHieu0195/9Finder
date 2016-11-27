@@ -306,3 +306,11 @@ div.desc {
     opacity: 1;
     background-color: #2C2C6F;
 }
+
+/*----------  bpopup  ----------*/
+#loading img {
+    border-radius: 10px;
+    width: 100px;
+    height: 100px;
+    background-color: #FFFFFF;
+}

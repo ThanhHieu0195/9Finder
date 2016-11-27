@@ -24,3 +24,29 @@ $(window).scroll(function(event) {
 		$('.affix-top').removeClass('affix-top');
 	}
 });
+
+/*----------  bpopup  ----------*/
+function loading() {
+  bPopup =  $('#loading').bPopup({
+    modalClose: false,
+      follow: [false, false],
+            content:'image',
+            contentContainer:'#loading',
+            loadUrl:'http://product.cdn.cevaws.com/bundles/cevafeliwaysitecommon/img/loading.gif'
+        });
+}
+function loaded() {
+  bPopup.close();
+}
+/*----------  Subsection comment block  ----------*/
+String.format = function(text) {
+    if (arguments.length <= 1) {
+        return text;
+    }
+    var tokenCount = arguments.length - 2;
+    for (var token = 0; token <= tokenCount; token++) {
+        text = text.replace(new RegExp("\\{" + token + "\\}", "gi"),
+                arguments[token + 1]);
+    }
+    return text;
+};

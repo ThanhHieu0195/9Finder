@@ -1,4 +1,4 @@
-
+<div ng-controller="search-result-Ctl">
 <nav class="navbar navbar-defaul navbar-fixed-top affix-top">
 	<div class="container-fluid">
 		<div class="navbar-header">
@@ -59,10 +59,9 @@
 	</nav>
 <div class="container" style="padding-top: 50px;">
 	<div class="row" style="margin-top: 30px;">
-		<div class="col-md-6 form">
-
+		<div class="col-md-6 form" id="content-service">
 			<div class="panel panel-info" ng-repeat="service in services" ng-mouseover="show_map(service.vido, service.kinhdo)">
-			<div class="panel-heading"><a ng-click="details($event)" serviceid="{{service.id_service}}" servicename="{{service.name}}" serviceprovince="{{service.province}}">{{service.id_service}}. {{service.name}}</a></div>
+				<div class="panel-heading"><a ng-click="details($event)" serviceid="{{service.id_service}}" servicename="{{service.name}}" serviceprovince="{{service.province}}">{{service.id_service}}. {{service.name}}</a></div>
 				<input type="text" hidden="true" class="nhi" id="service_id" value="{{service.id_service}}">
 				<div class="panel-body">
 					<div class="media">
@@ -89,7 +88,5 @@
 		</nav>
 	</div>
 </div>
-<script type="text/javascript">
-	
-</script>
+</div>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4yFaUjh6Vab5MXA-khLWUmU_QFx0hKoU&callback=initMap"></script>
