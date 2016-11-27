@@ -238,7 +238,8 @@ myApp.controller('Abc', function($scope, $route, $templateCache, $location){
 					json = $.parseJSON(data);
 					listcomment = json.data;
 					console.log(listcomment);
-					$('#newcomment').html(
+					$('#content-comment').html(
+						'<div class="panel panel-default" style="padding: 10px;">' +
 						'<div class="media">' +
 						'<div class="media-left">' +
 						'<img src="http://www.w3schools.com/bootstrap/img_avatar1.png" class="media-object" style="width:45px">' +
@@ -249,7 +250,9 @@ myApp.controller('Abc', function($scope, $route, $templateCache, $location){
 						'<p>' + listcomment[0].content + '</p>' +
 						'</div>' +
 						'</div>' +
-						'<hr><hr>' + $('#newcomment').html());
+						'<hr>' + 
+						'</div>' +
+						$('#content-comment').html());
 				});
 			}
 		});
