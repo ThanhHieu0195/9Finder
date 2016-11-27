@@ -293,3 +293,12 @@ div.desc {
 .form:hover .panel {
     opacity: 0.5;
 }
+
+.affix top {
+    opacity: 1;
+}
+
+.affix {
+    opacity: 1;
+    background-color: #2C2C6F;
+}
