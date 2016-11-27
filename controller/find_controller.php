@@ -17,17 +17,30 @@
 			return 0;
 		}
 
+		function getlistdistrict() {
+			$model = new service();
+			$arr = $model->get_all_district();
+			if (is_array($arr)) {
+				$this->data = $arr; 
+				return 1;
+			}
+			return 0;
+		}
+
 		function getlistdatabytype() {
 			if (isset($this->parameters['id_service_type'])) {
 				$service_type = $this->parameters['id_service_type'];
 				$model = new service();
-
+				$district_code = '';
+				if (isset($this->parameters['district'])) {
+					$district_code = $this->parameters['district'];
+				}
 				$start = 0;
 				if (isset($this->parameters['start'])) {
 					$start = $this->parameters['start'];
 				}
 
-				$arr = $model->get_data_service_by_type($service_type, $start);
+				$arr = $model->get_data_service_by_type($service_type, $district_code, $start);
 
 				if (is_array($arr) && count($arr) > 0) {
 					$this->data = $arr; 
