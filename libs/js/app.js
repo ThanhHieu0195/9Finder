@@ -19,6 +19,10 @@ myApp.config(function($routeProvider){
 });
 
 myApp.controller('Abc', function($scope, $route, $templateCache, $location){
+	/*----------  css  ----------*/
+	$scope.cssapp = "libs/css/app.css";
+	/*----------  js  ----------*/
+	
 	$.get('index.php?c=find&a=getlisttypeservice', function(data) {
 		json = $.parseJSON(data);
 		$scope.dsloaidv = json.data;

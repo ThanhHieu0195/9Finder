@@ -30,14 +30,14 @@
    <div class="col-md-2">
         <!-- đã login -->
         <div ng-if="account">
-            <div class="dropdown" id="menu1" data-toggle="dropdown">
+            <div class="dropdown" id="menu0" data-toggle="dropdown">
               <img src='https://freeiconshop.com/files/edd/person-flat.png' style="width: 40px; height: auto; margin: 10px;"/>
               <span style="font-size: 15px; color: white">
                 {{account.username}}
               </span>
               <span class="caret"></span>
             </div>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+            <ul class="dropdown-menu" role="menu" aria-labelledby="menu0">
               <li role="presentation"><a role="menuitem" tabindex="-1" href="#">User profile</a></li>
               <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Settings</a></li>
               <li role="presentation"><a role="menuitem" tabindex="-1" ng-click="logout()">Logout</a></li>
@@ -251,7 +251,7 @@
 
 
   </div>
-  <div id="menu1" class="tab-pane fade ">
+  <div id="menu1" class="tab-pane fade form">
     <div class="panel panel-default" style="padding: 10px;">
       <div class="panel-body">
         <div class="row">
@@ -343,7 +343,6 @@
         </div>
 
         <div class="panel panel-default" style="padding: 10px;" ng-repeat="comment in comments">
-
          <div class="media">
           <div class="media-left">
             <img src="http://www.w3schools.com/bootstrap/img_avatar1.png" class="media-object" style="width:45px">
@@ -356,6 +355,7 @@
         </div>
         <hr>
       </div>
+
     </div>
   </div>
 </div>

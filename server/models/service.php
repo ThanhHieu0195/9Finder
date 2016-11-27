@@ -3,6 +3,7 @@
 
 	class service extends database
 	{
+		public $_LIMIT = array('start'=>0, 'limit'=>10);
 		function get_all_type_service() {
 			$sql = "SELECT * FROM `service_type` ";
 			$this->setQuery($sql);
@@ -21,6 +22,7 @@
 		}
 
 		function get_data_service_by_type($type) {
+
 			$sql = "SELECT sv.id_service, svt.name type, pn.name, sv.house_number, st.name street, w.name ward, dt.name district, pv.name province, sv.website, sv.kinhdo, sv.vido, sv.price price, sv.remark
 				FROM service sv 
 					INNER JOIN service_type svt ON sv.service_code = svt.id_service_type
