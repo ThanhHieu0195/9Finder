@@ -5,6 +5,8 @@
 	*/
 	class comment extends database
 	{
+		public $_LIMIT = array('start'=>0, 'limit'=>10);
+
 		function insert($service_code, $content, $attached=0) {
 			if (current_account()) {
 				$comment_user = current_account();
@@ -17,18 +19,35 @@
 
 		
 		// 
-		function get_all_comment($service_code) {
-			$sql = "SELECT cm.*, ac.username comment_by, ac.avatar FROM comment cm JOIN account ac ON cm.comment_user = ac.token_id WHERE cm.service_code = $service_code;";
+		function get_all_comment($service_code, $start=0) {
+			$limit = $this->_LIMIT['limit'];
+			$query_limit = 	"LIMIT $start, $limit";
+
+			$sql = "SELECT cm.*, ac.username comment_by, ac.avatar FROM comment cm JOIN account ac ON cm.comment_user = ac.token_id WHERE cm.service_code = '$service_code' ORDER BY id_comment DESC $query_limit;";
 			$this->setQuery($sql);
 			$result = $this->query();
 			$arr = array();
 			while ($row = mysql_fetch_assoc($result)) {
-				# code...
+				$row['image'] = array(); 
+				if ($row['attached']) {
+					$row['image'] = $this->getAttached($row['id_comment']);
+				}
+
 				$arr[] = $row;
 			}
 			return $arr;
 		}
 
+		function getAttached($comment_code) {
+			$sql = "select 	id_image_album, link from image_album where comment_code = '$comment_code';";
+			$this->setQuery($sql);
+			$result = $this->query();
+			$arr = array();
+			while ($row = mysql_fetch_array($result)) {
+				$arr[] = $row;
+			}
+			return $arr;
+		}
 		function check_access($id_comment) {
 			if (current_account()) {
 				$comment_user = current_account();

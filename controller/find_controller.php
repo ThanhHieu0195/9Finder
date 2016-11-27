@@ -22,7 +22,12 @@
 				$service_type = $this->parameters['id_service_type'];
 				$model = new service();
 
-				$arr = $model->get_data_service_by_type($service_type);
+				$start = 0;
+				if (isset($this->parameters['start'])) {
+					$start = $this->parameters['start'];
+				}
+
+				$arr = $model->get_data_service_by_type($service_type, $start);
 
 				if (is_array($arr) && count($arr) > 0) {
 					$this->data = $arr; 
