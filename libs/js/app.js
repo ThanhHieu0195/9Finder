@@ -36,6 +36,21 @@ myApp.controller('Abc', function($scope, $http, $route, $templateCache, $locatio
 	$scope.cssapp = "libs/css/app.css";
 	/*----------  js  ----------*/
 
+	$scope.loadPage = function() {
+		$route.reload();
+	};
+
+	$scope.callpage = function() {
+		if ($.cookie('callpage').length > 0) {
+			window.location = $.cookie('callpage');
+			$.cookie('callpage', ""); 
+		}
+	}
+
+	if ($.cookie('callpage') != undefined ){
+		$scope.callpage();
+	}
+
 	/*----------  load accout sign  ----------*/
 	$scope.loadaccount = function () {
 		var username = $.cookie("username");
@@ -72,6 +87,7 @@ myApp.controller('Abc', function($scope, $http, $route, $templateCache, $locatio
 			if (json.result == 1) {
 				addAccountToCookie(username, json.data.token_id)
 				$scope.username = username;
+				$.cookie('callpage', window.location);
 				window.location = "";
 			} else {
 				alert("Username or Password incorrect");
@@ -245,9 +261,6 @@ myApp.controller('Abc', function($scope, $http, $route, $templateCache, $locatio
 	};
 	
 	/*=====  End of map  ======*/
-	$scope.loadPage = function() {
-		$route.reload();
-	};
 });
 
 /*==============================
