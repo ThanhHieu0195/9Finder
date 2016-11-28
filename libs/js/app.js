@@ -31,7 +31,7 @@ myApp.config(function($routeProvider){
 
 /*=====  End of main  ======*/
 
-myApp.controller('Abc', function($scope, $route, $templateCache, $location){
+myApp.controller('Abc', function($scope, $http, $route, $templateCache, $location){
 	/*----------  css  ----------*/
 	$scope.cssapp = "libs/css/app.css";
 	/*----------  js  ----------*/
@@ -91,6 +91,10 @@ myApp.controller('Abc', function($scope, $route, $templateCache, $location){
 	$scope.page_findresult = function() {
 		window.location = "#/search";
 	}
+	/*----------  goto page  ----------*/
+	$scope.gotoPage = function(location){
+		window.location.hash = location;
+	};
 	/*----------  logout account  ----------*/
 	$scope.logout = function() {
 		$.get('index.php?c=login&a=logout', function(data, textStatus, xhr) {
@@ -126,7 +130,7 @@ myApp.controller('Abc', function($scope, $route, $templateCache, $location){
 
 		if (listtypeservice[_name_type_service]) {
 			$.cookie('id_service_type', listtypeservice[_name_type_service][1]);
-			$scope.choose_service("#/search");
+			$scope.gotoPage("#/search");
 		}
 	};
 
@@ -135,19 +139,10 @@ myApp.controller('Abc', function($scope, $route, $templateCache, $location){
 	$scope.findByServiceType = function(service_id){
 		// lấy danh sách các dịch vụ theo loại dịch vụ
 		$.cookie('id_service_type', service_id);
-		$scope.choose_service("#/search");
+		$scope.gotoPage("#/search");
 	};
 	
 
-	/*----------  fiter service  ----------*/
-	$scope.choose_service = function(location){
-		var id_service_type = $.cookie('id_service_type');
-		$.post('index.php?c=find&a=getlistdatabytype', {ln: ['id_service_type'], lv: [id_service_type]}, function(data, textStatus, xhr) {
-			json = $.parseJSON(data);
-			$scope.services = json.data;
-			window.location.hash = location;
-		});
-	};
 
 
 	var service_id;
@@ -250,17 +245,6 @@ myApp.controller('Abc', function($scope, $route, $templateCache, $location){
 ==============================*/
 myApp.controller('searchCtl', function ($scope, $route, $templateCache, $location){
 
-	/*----------  callback  ----------*/
-	if ($.cookie('callback') != "") {
-		var callback = $.cookie('callback');
-		if (callback == "choose_service") {
-			$.cookie('callback', "");
-			var location = $.cookie('location');
-			$.cookie('location', "");
-			$scope.choose_service(location);
-		}
-	}
-
 	/*----------  show popup login, register  ----------*/
 	$scope.hidepopup = function(arr) {
 		for (var i = 0; i < arr.length; i++) {
@@ -275,40 +259,31 @@ myApp.controller('searchCtl', function ($scope, $route, $templateCache, $locatio
 /*==================================
 =            findresult            =
 ==================================*/
-myApp.controller('search-result-Ctl', function ($scope, $route, $templateCache, $location){
-	if ($.cookie('callback') != "") {
-		var callback = $.cookie('callback');
-		if (callback == "details") {
-			$.cookie('callback', "");
-			var location = $.cookie('location');
-			$.cookie('location', "");
-			$scope.details("",callback);
-		}
-	}
-	$scope.reload = function() {
-		$.cookie('callback', 'choose_service');
-		$.cookie('location', '#/search');
-		$scope.pagefind();
-	};
+myApp.controller('search-result-Ctl', function ($scope, $http, $route, $templateCache, $location){
+    var id_service_type = $.cookie('id_service_type');
+	var data = $.param({
+        ln: ['id_service_type'],
+        lv: [id_service_type]
+    });
 
-	if (!$scope.services) {
-		$scope.reload();
-	}
+    var config = {
+        headers : {
+            'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+        }
+    }
+
+	$http.post('index.php?c=find&a=getlistdatabytype', data, config).success(function(data) {
+		json = data;
+		$scope.services = json.data;
+		console.log(data);
+	});
 });
 /*=====  End of findresult  ======*/
 
 /*======================================
 =            detail service            =
 ======================================*/
-myApp.controller('detail-Ctl', function ($scope, $route, $templateCache, $location){
-	$scope.reload = function() {
-		$.cookie('callback', 'details');
-		$.cookie('location', '#/details');
-		$scope.pagefind();
-	};
-
-	if (!$scope.comments) {
-		$scope.page_findresult();
-	}
+myApp.controller('detail-Ctl', function ($scope, $http, $route, $templateCache, $location){
+	
 });
 /*=====  End of detail service  ======*/
