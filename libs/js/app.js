@@ -321,58 +321,56 @@ myApp.controller('detail-Ctl', function ($scope, $http, $route, $templateCache, 
 		json = data;
 		console.log(data);
 		$scope.comments = json.data;
-	});
-	// lấy rating cho 1 địa điểm
-	$http.get('index.php?c=rating&a=get_rating_medium&ln=service_code&lv=' + service_id.toString(), config).success(function(data, textStatus, xhr) {
-		json = data;
-		console.log(data);
-		$scope.rating = json.data;
-	});
-	// trả về mãng link hình ảnh
-	$http.get('index.php?c=service&a=load_album&ln=id_service&lv=' + service_id.toString(), config).success(function(data) {
-		json = data;
-		console.log(data);
-		$scope.photos = json.data;
-	});
-
-	/*----------  add comment  ----------*/
-	$scope.comment = function(){
-		var comment = $('#comment').val();
-		if ($scope.account) {
-			$.post('index.php?c=comment&a=addcomment', {ln: ['service_code', 'content'], lv: [service_id, comment]}, function(data, textStatus, xhr) {
+		// lấy rating cho 1 địa điểm
+		$http.get('index.php?c=rating&a=get_rating_medium&ln=service_code&lv=' + service_id.toString(), config).success(function(data, textStatus, xhr) {
+			json = data;
+			console.log(data);
+			$scope.rating = json.data;
+			// trả về mãng link hình ảnh
+			$http.get('index.php?c=service&a=load_album&ln=id_service&lv=' + service_id.toString(), config).success(function(data) {
+				json = data;
 				console.log(data);
-				json = $.parseJSON(data);
-				if (json.result == 1){
-					var listcomment = [];
-					$.get('index.php?c=comment&a=getallcomment&ln=service_code&lv=' + service_id.toString(), function(data) {
-						$scope.loadPage();
+				$scope.photos = json.data;
+				/*----------  add comment  ----------*/
+				$scope.comment = function(){
+					var comment = $('#comment').val();
+					if ($scope.account) {
+						$.post('index.php?c=comment&a=addcomment', {ln: ['service_code', 'content'], lv: [service_id, comment]}, function(data, textStatus, xhr) {
+							console.log(data);
+							json = $.parseJSON(data);
+							if (json.result == 1){
+								var listcomment = [];
+								$.get('index.php?c=comment&a=getallcomment&ln=service_code&lv=' + service_id.toString(), function(data) {
+									$scope.loadPage();
+								});
+							}
+						});
+					} else {
+						alert('You are not login!');
+					}
+				};
+				/*----------  remove comment  ----------*/
+				$scope.remove_comment = function(e){
+					var id_comment = $(e.currentTarget).attr("idcomment");
+					//xoa comment
+					$.post('index.php?c=comment&a=delcomment', {ln: 'id_comment', lv: id_comment}, function(data, textStatus, xhr) {
+						json = $.parseJSON(data);
+						console.log(json);
 					});
-				}
+					//load lai trang
+					//load lai danh sach comment
+					$.get('index.php?c=comment&a=getallcomment&ln=service_code&lv=' + service_id.toString(), function(data) {
+						json = $.parseJSON(data);
+						console.log(json.data);
+						$scope.comments = json.data;
+					});
+					//window.location.hash = "#/details";
+					var currentPageTemplate = $route.current.templateUrl;
+					$templateCache.remove(currentPageTemplate);
+					$route.reload();
+				};
 			});
-		} else {
-			alert('You are not login!');
-		}
-	};
-
-	/*----------  remove comment  ----------*/
-	$scope.remove_comment = function(e){
-		var id_comment = $(e.currentTarget).attr("idcomment");
-		//xoa comment
-		$.post('index.php?c=comment&a=delcomment', {ln: 'id_comment', lv: id_comment}, function(data, textStatus, xhr) {
-			json = $.parseJSON(data);
-			console.log(json);
 		});
-		//load lai trang
-		//load lai danh sach comment
-		$.get('index.php?c=comment&a=getallcomment&ln=service_code&lv=' + service_id.toString(), function(data) {
-			json = $.parseJSON(data);
-			console.log(json.data);
-			$scope.comments = json.data;
-		});
-		//window.location.hash = "#/details";
-		var currentPageTemplate = $route.current.templateUrl;
-		$templateCache.remove(currentPageTemplate);
-		$route.reload();
-	};
+	});
 });
 /*=====  End of detail service  ======*/
