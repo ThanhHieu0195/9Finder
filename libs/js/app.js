@@ -147,84 +147,92 @@ myApp.controller('Abc', function($scope, $http, $route, $templateCache, $locatio
 
 	var service_id;
 	$scope.details = function(e){
-       	service_id = $(e.currentTarget).attr("serviceid");
-        $scope.idservice = service_id;
-        $scope.serviceName = $(e.currentTarget).attr("servicename");
-        $scope.serviceProvince = $(e.currentTarget).attr("serviceprovince");
-		// lấy tất cả comment của dịch vụ
-		$.get('index.php?c=comment&a=getallcomment&ln=service_code&lv=' + service_id.toString(), function(data) {
-			json = $.parseJSON(data);
-			$scope.comments = json.data;
-		});
-		// lấy rating cho 1 địa điểm
-		$.get('index.php?c=rating&a=get_rating_medium&ln=service_code&lv=1', function(data, textStatus, xhr) {
-			json = $.parseJSON(data);
-			$scope.rating = json.data;
-		});
-		// trả về mãng link hình ảnh
-		$.get('index.php?c=service&a=load_album&ln=id_service&lv=' + service_id.toString(), function(data) {
-			json = $.parseJSON(data);
-			$scope.photos = json.data;
-		});
-		window.location.hash = "#/details";
+  //      	service_id = $(e.currentTarget).attr("serviceid");
+  //       $scope.idservice = service_id;
+  //       $scope.serviceName = $(e.currentTarget).attr("servicename");
+  //       $scope.serviceProvince = $(e.currentTarget).attr("serviceprovince");
+		// // lấy tất cả comment của dịch vụ
+		// $.get('index.php?c=comment&a=getallcomment&ln=service_code&lv=' + service_id.toString(), function(data) {
+		// 	json = $.parseJSON(data);
+		// 	$scope.comments = json.data;
+		// });
+		// // lấy rating cho 1 địa điểm
+		// $.get('index.php?c=rating&a=get_rating_medium&ln=service_code&lv=1', function(data, textStatus, xhr) {
+		// 	json = $.parseJSON(data);
+		// 	$scope.rating = json.data;
+		// });
+		// // trả về mãng link hình ảnh
+		// $.get('index.php?c=service&a=load_album&ln=id_service&lv=' + service_id.toString(), function(data) {
+		// 	json = $.parseJSON(data);
+		// 	$scope.photos = json.data;
+		// });
+		// window.location.hash = "#/details";
+
+		var service_id = $(e.currentTarget).attr("serviceid");
+		var serviceName = $(e.currentTarget).attr("servicename");
+		var serviceProvince = $(e.currentTarget).attr("serviceprovince");
+		$.cookie('serviceid', service_id);
+		$.cookie('servicename', serviceName);
+		$.cookie('serviceprovince', serviceProvince);
+		$scope.gotoPage("#/details");
 	};
 
 	/*----------  add comment  ----------*/
-	$scope.comment = function(){
-		var comment = $('#comment').val();
-		if ($scope.account) {
-			$.post('index.php?c=comment&a=addcomment', {ln: ['service_code', 'content'], lv: [service_id, comment]}, function(data, textStatus, xhr) {
-				console.log(data);
-				json = $.parseJSON(data);
-				if (json.result == 1){
-					var listcomment = [];
-					$.get('index.php?c=comment&a=getallcomment&ln=service_code&lv=' + service_id.toString(), function(data) {
-						json = $.parseJSON(data);
-						listcomment = json.data;
-						console.log(listcomment);
-						$('#content-comment').html(
-							'<div class="panel panel-default" style="padding: 10px;">' +
-							'<div class="media">' +
-							'<div class="media-left">' +
-							'<img src="http://www.w3schools.com/bootstrap/img_avatar1.png" class="media-object" style="width:45px">' +
-							'</div>' +
-							'<div class="media-body">' +
-							'<h4 class="media-heading">' + listcomment[0].comment_by + '<small><i>Posted on February 19, 2016 chua co du lieu</i></small></h4>' +
-							'<a class="glyphicon glyphicon-remove" style="float: right;" ng-click="remove_comment($event)" idcomment="' + listcomment[0].id_comment + '"></a>' +
-							'<p>' + listcomment[0].content + '</p>' +
-							'</div>' +
-							'</div>' +
-							'<hr>' + 
-							'</div>' +
-							$('#content-comment').html());
-					});
-				}
-			});
-		} else {
-			alert('You are not login!');
-		}
-	};
+	// $scope.comment = function(){
+	// 	var comment = $('#comment').val();
+	// 	if ($scope.account) {
+	// 		$.post('index.php?c=comment&a=addcomment', {ln: ['service_code', 'content'], lv: [service_id, comment]}, function(data, textStatus, xhr) {
+	// 			console.log(data);
+	// 			json = $.parseJSON(data);
+	// 			if (json.result == 1){
+	// 				var listcomment = [];
+	// 				$.get('index.php?c=comment&a=getallcomment&ln=service_code&lv=' + service_id.toString(), function(data) {
+	// 					json = $.parseJSON(data);
+	// 					listcomment = json.data;
+	// 					console.log(listcomment);
+	// 					$('#content-comment').html(
+	// 						'<div class="panel panel-default" style="padding: 10px;">' +
+	// 						'<div class="media">' +
+	// 						'<div class="media-left">' +
+	// 						'<img src="http://www.w3schools.com/bootstrap/img_avatar1.png" class="media-object" style="width:45px">' +
+	// 						'</div>' +
+	// 						'<div class="media-body">' +
+	// 						'<h4 class="media-heading">' + listcomment[0].comment_by + '<small><i>Posted on February 19, 2016 chua co du lieu</i></small></h4>' +
+	// 						'<a class="glyphicon glyphicon-remove" style="float: right;" ng-click="remove_comment($event)" idcomment="' + listcomment[0].id_comment + '"></a>' +
+	// 						'<p>' + listcomment[0].content + '</p>' +
+	// 						'</div>' +
+	// 						'</div>' +
+	// 						'<hr>' + 
+	// 						'</div>' +
+	// 						$('#content-comment').html());
+	// 				});
+	// 			}
+	// 		});
+	// 	} else {
+	// 		alert('You are not login!');
+	// 	}
+	// };
 
 	/*----------  remove comment  ----------*/
-	$scope.remove_comment = function(e){
-		var id_comment = $(e.currentTarget).attr("idcomment");
-		//xoa comment
-		$.post('index.php?c=comment&a=delcomment', {ln: 'id_comment', lv: id_comment}, function(data, textStatus, xhr) {
-			json = $.parseJSON(data);
-			console.log(json);
-		});
-		//load lai trang
-		//load lai danh sach comment
-		$.get('index.php?c=comment&a=getallcomment&ln=service_code&lv=' + service_id.toString(), function(data) {
-			json = $.parseJSON(data);
-			console.log(json.data);
-			$scope.comments = json.data;
-		});
-		//window.location.hash = "#/details";
-		var currentPageTemplate = $route.current.templateUrl;
-		$templateCache.remove(currentPageTemplate);
-		$route.reload();
-	};
+	// $scope.remove_comment = function(e){
+	// 	var id_comment = $(e.currentTarget).attr("idcomment");
+	// 	//xoa comment
+	// 	$.post('index.php?c=comment&a=delcomment', {ln: 'id_comment', lv: id_comment}, function(data, textStatus, xhr) {
+	// 		json = $.parseJSON(data);
+	// 		console.log(json);
+	// 	});
+	// 	//load lai trang
+	// 	//load lai danh sach comment
+	// 	$.get('index.php?c=comment&a=getallcomment&ln=service_code&lv=' + service_id.toString(), function(data) {
+	// 		json = $.parseJSON(data);
+	// 		console.log(json.data);
+	// 		$scope.comments = json.data;
+	// 	});
+	// 	//window.location.hash = "#/details";
+	// 	var currentPageTemplate = $route.current.templateUrl;
+	// 	$templateCache.remove(currentPageTemplate);
+	// 	$route.reload();
+	// };
 
 	/*===========================
 	=            map            =
@@ -283,7 +291,102 @@ myApp.controller('search-result-Ctl', function ($scope, $http, $route, $template
 /*======================================
 =            detail service            =
 ======================================*/
+
 myApp.controller('detail-Ctl', function ($scope, $http, $route, $templateCache, $location){
-	
+	$scope.comments = [];
+	$scope.rating = 1;
+	$scope.photos = [];
+
+	var service_id = $.cookie('serviceid');
+	var servicename = $.cookie('servicename');
+	var serviceprovince = $.cookie('serviceprovince');
+	var data = $.param({
+        ln: ['service_code'],
+        lv: [service_id]
+    });
+
+    var config = {
+        headers : {
+             'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+         }
+     }
+ 	$scope.idservice = service_id;
+ 	$scope.serviceName = servicename;
+ 	$scope.serviceProvince = serviceprovince;
+	// lấy tất cả comment của dịch vụ
+	$http.get('index.php?c=comment&a=getallcomment&ln=service_code&lv=' + service_id.toString(), config).success(function(data) {
+		json = data;
+		console.log(data);
+		$scope.comments = json.data;
+	});
+	// lấy rating cho 1 địa điểm
+	$http.get('index.php?c=rating&a=get_rating_medium&ln=service_code&lv=' + service_id.toString(), config).success(function(data, textStatus, xhr) {
+		json = data;
+		console.log(data);
+		$scope.rating = json.data;
+	});
+	// trả về mãng link hình ảnh
+	$http.get('index.php?c=service&a=load_album&ln=id_service&lv=' + service_id.toString(), config).success(function(data) {
+		json = data;
+		console.log(data);
+		$scope.photos = json.data;
+	});
+
+	/*----------  add comment  ----------*/
+	$scope.comment = function(){
+		var comment = $('#comment').val();
+		if ($scope.account) {
+			$.post('index.php?c=comment&a=addcomment', {ln: ['service_code', 'content'], lv: [service_id, comment]}, function(data, textStatus, xhr) {
+				console.log(data);
+				json = $.parseJSON(data);
+				if (json.result == 1){
+					var listcomment = [];
+					$.get('index.php?c=comment&a=getallcomment&ln=service_code&lv=' + service_id.toString(), function(data) {
+						json = $.parseJSON(data);
+						listcomment = json.data;
+						console.log(listcomment);
+						$('#content-comment').html(
+							'<div class="panel panel-default" style="padding: 10px;">' +
+							'<div class="media">' +
+							'<div class="media-left">' +
+							'<img src="http://www.w3schools.com/bootstrap/img_avatar1.png" class="media-object" style="width:45px">' +
+							'</div>' +
+							'<div class="media-body">' +
+							'<h4 class="media-heading">' + listcomment[0].comment_by + '<small><i>Posted on February 19, 2016 chua co du lieu</i></small></h4>' +
+							'<a class="glyphicon glyphicon-remove" style="float: right;" ng-click="remove_comment($event)" idcomment="' + listcomment[0].id_comment + '"></a>' +
+							'<p>' + listcomment[0].content + '</p>' +
+							'</div>' +
+							'</div>' +
+							'<hr>' + 
+							'</div>' +
+							$('#content-comment').html());
+					});
+				}
+			});
+		} else {
+			alert('You are not login!');
+		}
+	};
+
+	/*----------  remove comment  ----------*/
+	$scope.remove_comment = function(e){
+		var id_comment = $(e.currentTarget).attr("idcomment");
+		//xoa comment
+		$.post('index.php?c=comment&a=delcomment', {ln: 'id_comment', lv: id_comment}, function(data, textStatus, xhr) {
+			json = $.parseJSON(data);
+			console.log(json);
+		});
+		//load lai trang
+		//load lai danh sach comment
+		$.get('index.php?c=comment&a=getallcomment&ln=service_code&lv=' + service_id.toString(), function(data) {
+			json = $.parseJSON(data);
+			console.log(json.data);
+			$scope.comments = json.data;
+		});
+		//window.location.hash = "#/details";
+		var currentPageTemplate = $route.current.templateUrl;
+		$templateCache.remove(currentPageTemplate);
+		$route.reload();
+	};
 });
 /*=====  End of detail service  ======*/
