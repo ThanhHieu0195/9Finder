@@ -1,123 +1,77 @@
-<div ng-controller="detail-Ctl"> 
-<nav class="navbar navbar-default navbar-static-top navbar-fixed-top affix-top">
-  <div class="container">
-    <div class="row">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myNavbar" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#/">9Finder</a>
-      </div>
-
-      <div class="collapse navbar-collapse" id="myNavbar">
+Fô<div ng-controller="detail-Ctl"> 
+<nav class="navbar navbar-defaul navbar-fixed-top affix-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#/">Logo</a>
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
       <div class="col-md-3">
-      <input type="text" id="chosen" ng-model="service_name" ng-change="choose_service()" class="form-control" size="30" placeholder="I'm looking for..." required list="itemList" style="margin: 10px;">
-        <datalist id="itemList">
-          <option ng-repeat="obj in listtypeservice" value="{{obj.name}}">
-          </datalist>
-        </div>
-        <div class="col-md-3">
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Ho Chi Minh City" required style="margin: 10px;">
-            <span class="input-group-btn">
-              <button class="btn btn-default" type="button">
-                <span class="glyphicon glyphicon-search"></span>
-              </button>
-            </span>
-          </div>
-        </div>
-
-      <!-- đã login -->
-      <div class="nav navbar-nav navbar-right text-center">
-        <div ng-if="account" style="cursor: pointer;">
-            <div class="dropdown" id="menu1" data-toggle="dropdown">
+       <input type="text" class="form-control" id="chosen" ng-model="service_name" ng-change="choose_service_detail()" size="30" placeholder="I'm looking for..." required list="itemList" style="margin: 10px;">
+       <datalist id="itemList">
+        <option ng-repeat="obj in listtypeservice" value="{{obj.name}}">
+        </datalist>
+      </div>
+      <div class="col-md-3">
+       <div class="input-group">
+        <input type="text" class="form-control" value ="Ho Chi Minh City" required style="margin: 10px;">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button">
+           <span class="glyphicon glyphicon-search"></span>
+         </button>
+       </span>
+     </div>
+   </div>
+   <div class="col-md-3"></div>
+   <div class="col-md-2">
+        <!-- đã login -->
+        <div ng-if="account">
+            <div class="dropdown" id="menu0" data-toggle="dropdown">
               <img src='https://freeiconshop.com/files/edd/person-flat.png' style="width: 40px; height: auto; margin: 10px;"/>
               <span style="font-size: 15px; color: white">
                 {{account.username}}
               </span>
               <span class="caret"></span>
             </div>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+            <ul class="dropdown-menu" role="menu" aria-labelledby="menu0">
               <li role="presentation"><a role="menuitem" tabindex="-1" href="#">User profile</a></li>
               <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Settings</a></li>
               <li role="presentation"><a role="menuitem" tabindex="-1" ng-click="logout()">Logout</a></li>
             </ul>
+        </div>  
+
+        <div ng-if="!account" ng-click="pagelogin()">
+           <img src='https://freeiconshop.com/files/edd/person-flat.png' style="width: 40px; height: auto; margin: 10px;"/>
+           <span style="font-size: 15px; color: white">
+            User name
+          </span>
         </div>
-        <!-- chưa login -->
-        <div ng-if = "!account" style="cursor: pointer;">
-            <a data-toggle="modal" data-target="#myModalLogin">
-                <img src='https://freeiconshop.com/files/edd/person-flat.png' style="width: 40px; height: auto; margin: 10px;"/>
-                <span style="font-size: 15px; color: white">
-                  User name
-                </span>
-              </a>
-        </div>
-      </div>
-    </div>
-  </div>
-  </div>
-</nav>
-
-<!-- Modal Login -->
-<div class="modal fade" id="myModalLogin" role="dialog" style="margin-top: 50px;">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <div class="panel panel-main">
-          <div class="panel-heading">
-            <h4 class="text-center" style="color: red;">LOGIN</h4>
-          </div>
-
-          <div class="panel-body">
-            <form id="form-login" action="" method="POST" role="form">
-
-              <div class="form-group">
-                <label for="username">Username: </label>
-                <input type="text" class="form-control" id="username" placeholder="type your username">
-              </div>
-
-              <div class="form-group">
-                <label for="password">Password: </label>
-                <input type="password" class="form-control" id="password" placeholder="type your password">
-              </div>
-
-              <div class="row">
-                <div class="col-md-8">
-                  <button type="button" id="submit" class="btn btn-primary btn-block" ng-click="login()">Submit</button>
-                </div>
-                <div class="col-md-4">
-                  <a href="#" class="btn btn-link">Forgot your password!</a>
-                </div>
-              </div>
-
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
+
+</div>
+</nav>
 
 <div class="panel panel-default" style="margin-top: 50px; padding: 2px;">
   <div class="panel-body">
     <div class="row listfind" style="margin: 30px;">
-      <a class="btn btn-info btn-lg" ng-click="service_food()">
+      <a class="btn btn-info btn-lg" ng-click="findByServiceType(1)">
         <span class="glyphicon glyphicon-cutlery"></span> Food
       </a>
-      <a class="btn btn-info btn-lg" ng-click="service_coffee()">
+      <a class="btn btn-info btn-lg" ng-click="findByServiceType(2)">
         <span class="glyphicon glyphicon-tint"></span> Coffee
       </a>
-      <a class="btn btn-info btn-lg" ng-click="service_nightlife()">
+      <a class="btn btn-info btn-lg" ng-click="findByServiceType(2)">
         <span class="glyphicon glyphicon-glass"></span> Nightlife
       </a>
-      <a class="btn btn-info btn-lg" ng-click="service_fun()">
+      <a class="btn btn-info btn-lg" ng-click="findByServiceType(2)">
         <span class="glyphicon glyphicon-apple"></span> Fun
       </a>
-      <a class="btn btn-info btn-lg" ng-click="service_shopping()">
+      <a class="btn btn-info btn-lg" ng-click="findByServiceType(2)">
         <span class="glyphicon glyphicon-shopping-cart"></span> Shopping
       </a>
     </div>
@@ -197,7 +151,6 @@
         <span><input type="radio" name="rating" id="str2" value="2"><label for="str2"></label></span>
         <span><input type="radio" name="rating" id="str1" value="1"><label for="str1"></label></span>
       </div>
-      <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
       <script type="text/javascript">
         $(document).ready(function(){
           //  Check Radio-box
@@ -235,14 +188,14 @@
     <h2>About</h2>
 
     <ul class="nav nav-tabs">
-      <li class="active"><a data-toggle="tab" href="#details#home">Photos <span class="label label-primary">101</span></a></li>
-      <li><a data-toggle="tab" href="#details#menu1">Tips <span class="label label-primary">102</span</a></li>
+      <li><a data-toggle="tab" href="#details#photo">Photos <span class="label label-primary">101</span></a></li>
+      <li><a data-toggle="tab" href="#details#comment">Tips <span class="label label-primary">102</span</a></li>
     </ul>
 
     <div class="row">
       <div class="col-md-9">
         <div class="tab-content" style="margin: 30px;">
-          <div id="home" class="tab-pane fade">
+          <div id="photo" class="tab-pane fade">
             <div class="row" style="margin: 30px;">
              <button class="btn btn-danger" type="button">
               <span class="glyphicon glyphicon-camera"></span>
@@ -297,7 +250,7 @@
 
 
   </div>
-  <div id="menu1" class="tab-pane fade form in active">
+  <div id="comment" class="tab-pane fade form in active">
     <div class="panel panel-default" style="padding: 10px;">
       <div class="panel-body">
         <div class="row">

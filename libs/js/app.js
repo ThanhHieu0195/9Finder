@@ -300,6 +300,7 @@ myApp.controller('detail-Ctl', function ($scope, $http, $route, $templateCache, 
 	var service_id = $.cookie('serviceid');
 	var servicename = $.cookie('servicename');
 	var serviceprovince = $.cookie('serviceprovince');
+
 	var data = $.param({
         ln: ['service_code'],
         lv: [service_id]
