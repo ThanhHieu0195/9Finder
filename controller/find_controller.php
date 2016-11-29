@@ -27,20 +27,44 @@
 			return 0;
 		}
 
-		function getlistdatabytype() {
-			if (isset($this->parameters['id_service_type'])) {
-				$service_type = $this->parameters['id_service_type'];
+		function getlistdatabycondition() {
+			if (isset($this->parameters['service']) && isset($this->parameters['location'])) {
+				$service = $this->parameters['service'];
+				$location = $this->parameters['location'];
+
 				$model = new service();
-				$district_code = '';
-				if (isset($this->parameters['district'])) {
-					$district_code = $this->parameters['district'];
-				}
 				$start = 0;
 				if (isset($this->parameters['start'])) {
 					$start = $this->parameters['start'];
 				}
 
-				$arr = $model->get_data_service_by_type($service_type, $district_code, $start);
+				$arr = $model->get_data_service_by_condition($service, $location, $start);
+
+				if (is_array($arr) && count($arr) > 0) {
+					$this->data = $arr; 
+					return 1;
+				}
+			} 
+			return 0;
+		}
+
+		function getlistdatabytype() {
+			if (isset($this->parameters['id_service_type'])) {
+				$service_type = $this->parameters['id_service_type'];
+				$searchby = 0;
+				if (isset($this->parameters['searchby'])) {
+					$searchby = $this->parameters['searchby'];
+				}
+
+				$model = new service();
+
+				$start = 0;
+				if (isset($this->parameters['start'])) {
+					$start = $this->parameters['start'];
+				}
+
+				$arr = $model->get_data_service_by_type($service_type, $start, $searchby);
+				$this->data = $arr; 
 
 				if (is_array($arr) && count($arr) > 0) {
 					$this->data = $arr; 

@@ -9,20 +9,17 @@ Fô<div ng-controller="detail-Ctl">
         <span class="icon-bar"></span>
       </button>
     </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
+    <div class="collapse navbar-collapse" id="myNavbar" style="margin: 12px;">
       <div class="col-md-3">
-       <input type="text" class="form-control" id="chosen" ng-model="service_name" ng-change="choose_service_detail()" size="30" placeholder="I'm looking for..." required list="itemList" style="margin: 10px;">
-       <datalist id="itemList">
-        <option ng-repeat="obj in listtypeservice" value="{{obj.name}}">
-        </datalist>
+        <input type="text" class="form-control" size="50" id="service" placeholder="I'm looking for...">
       </div>
       <div class="col-md-3">
        <div class="input-group">
-        <input type="text" class="form-control" value ="Ho Chi Minh City" required style="margin: 10px;">
+      <input type="text" id="location" class="form-control" size="30" placeholder="Hồ chí minh">
         <span class="input-group-btn">
-          <button class="btn btn-default" type="button">
-           <span class="glyphicon glyphicon-search"></span>
-         </button>
+          <button type="button" class="btn btn-danger" ng-click="search('#/search')">
+            <span class="glyphicon glyphicon-search"></span> Search
+          </button>
        </span>
      </div>
    </div>
@@ -61,21 +58,21 @@ Fô<div ng-controller="detail-Ctl">
 <div class="panel panel-default" style="margin-top: 50px; padding: 2px;">
   <div class="panel-body">
     <div class="row listfind" style="margin: 30px;">
-      <a class="btn btn-info btn-lg" ng-click="findByServiceType(1)">
-        <span class="glyphicon glyphicon-cutlery"></span> Food
-      </a>
-      <a class="btn btn-info btn-lg" ng-click="findByServiceType(2)">
-        <span class="glyphicon glyphicon-tint"></span> Coffee
-      </a>
-      <a class="btn btn-info btn-lg" ng-click="findByServiceType(2)">
-        <span class="glyphicon glyphicon-glass"></span> Nightlife
-      </a>
-      <a class="btn btn-info btn-lg" ng-click="findByServiceType(2)">
-        <span class="glyphicon glyphicon-apple"></span> Fun
-      </a>
-      <a class="btn btn-info btn-lg" ng-click="findByServiceType(2)">
-        <span class="glyphicon glyphicon-shopping-cart"></span> Shopping
-      </a>
+      <a class="btn btn-info btn-lg" ng-click="findByServiceType(1,'#/search')">
+          <span class="glyphicon glyphicon-cutlery"></span> Food
+        </a>
+        <a class="btn btn-info btn-lg" ng-click="findByServiceType(2,'#/search')">
+          <span class="glyphicon glyphicon-tint"></span> Coffee
+        </a>
+        <a class="btn btn-info btn-lg" ng-click="findByServiceType(3,'#/search')">
+          <span class="glyphicon glyphicon-glass"></span> Cinema
+        </a>
+        <a class="btn btn-info btn-lg" ng-click="findByServiceType(4,'#/search')">
+          <span class="glyphicon glyphicon-apple"></span> Bank
+        </a>
+        <a class="btn btn-info btn-lg" ng-click="findByServiceType(5,'#/search')">
+          <span class="glyphicon glyphicon-shopping-cart"></span> Bar and Karaoke
+        </a>
     </div>
   </div>
 </div>

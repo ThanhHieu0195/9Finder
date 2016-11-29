@@ -46,29 +46,26 @@
 		<h1>9FINDER</h1>
 		<i>Find the best places to eat, drink, shop, or visit in SaiGon City</i>
 		<form class="form-inline">
-			<input type="text" class="form-control" size="50" id="chosen" placeholder="I'm looking for..." required list="itemList">
-			<datalist id="itemList">
-				<option ng-repeat="obj in listtypeservice" value="{{obj.name}}"/>
-			</datalist>
-			<input type="text" class="form-control" size="30" placeholder="Hồ chí minh" required>
-			<button type="button" class="btn btn-danger" ng-click="search()">
+			<input type="text" class="form-control" size="50" id="service" placeholder="I'm looking for...">
+			<input type="text" id="location" class="form-control" size="30" placeholder="Hồ chí minh">
+			<button type="button" class="btn btn-danger" ng-click="search('#/search')">
 				<span class="glyphicon glyphicon-search"></span> Search
 			</button>
 			<div class="row listfind" style="margin: 30px;">
-				<a class="btn btn-info btn-lg" ng-click="findByServiceType(1)">
+				<a class="btn btn-info btn-lg" ng-click="findByServiceType(1, '#/search')">
 					<span class="glyphicon glyphicon-cutlery"></span> Food
 				</a>
-				<a class="btn btn-info btn-lg" ng-click="findByServiceType(2)">
+				<a class="btn btn-info btn-lg" ng-click="findByServiceType(2, '#/search')">
 					<span class="glyphicon glyphicon-tint"></span> Coffee
 				</a>
-				<a class="btn btn-info btn-lg" ng-click="findByServiceType(2)">
-					<span class="glyphicon glyphicon-glass"></span> Nightlife
+				<a class="btn btn-info btn-lg" ng-click="findByServiceType(3, '#/search')">
+					<span class="glyphicon glyphicon-glass"></span> Cinema
 				</a>
-				<a class="btn btn-info btn-lg" ng-click="findByServiceType(2)">
-					<span class="glyphicon glyphicon-apple"></span> Fun
+				<a class="btn btn-info btn-lg" ng-click="findByServiceType(4, '#/search')">
+					<span class="glyphicon glyphicon-apple"></span> Bank
 				</a>
-				<a class="btn btn-info btn-lg" ng-click="findByServiceType(2)">
-					<span class="glyphicon glyphicon-shopping-cart"></span> Shopping
+				<a class="btn btn-info btn-lg" ng-click="findByServiceType(5,'#/search')">
+					<span class="glyphicon glyphicon-shopping-cart"></span> Bar and Karaoke
 				</a>
 			</div>
 		</form>

@@ -139,23 +139,30 @@ myApp.controller('Abc', function($scope, $http, $route, $templateCache, $locatio
 	}
 
 	/*----------  find by condition  ----------*/
-	
-	$scope.search = function(){
-		var listtypeservice = $scope.listtypeservice;
-		var _name_type_service = $('#chosen').val();
-
-		if (listtypeservice[_name_type_service]) {
-			$.cookie('id_service_type', listtypeservice[_name_type_service][1]);
-			$scope.gotoPage("#/search");
+	$scope.search = function(location=""){
+		$.cookie('action', 'findbycondition');
+		$.cookie('service', $('#service').val());
+		$.cookie('location', $('#location').val());
+		$.cookie('searchby', 0);
+		if (location == "") {
+			$scope.loadPage();
+		} else {
+			$scope.gotoPage(location);
 		}
 	};
 
 	/*----------  find by service type  ----------*/
 	
-	$scope.findByServiceType = function(service_id){
+	$scope.findByServiceType = function(service_id, location=""){
 		// lấy danh sách các dịch vụ theo loại dịch vụ
+		$.cookie('action', 'findbytype');
 		$.cookie('id_service_type', service_id);
-		$scope.gotoPage("#/search");
+		$.cookie('searchby', 0);
+			if (location == "") {
+			$scope.loadPage();
+		} else {
+			$scope.gotoPage(location);
+		}
 	};
 	
 
@@ -283,23 +290,67 @@ myApp.controller('searchCtl', function ($scope, $route, $templateCache, $locatio
 =            findresult            =
 ==================================*/
 myApp.controller('search-result-Ctl', function ($scope, $http, $route, $templateCache, $location){
-    var id_service_type = $.cookie('id_service_type');
-	var data = $.param({
-        ln: ['id_service_type'],
-        lv: [id_service_type]
-    });
+	var action = $.cookie('action');
+	$scope.searchby = function(location="") {
+		var searchby = $('#searchby').val();
+		switch (searchby) {
+			case 'Price':
+				$.cookie('searchby', 1);
+				break;
+			case 'Location':
+				$.cookie('searchby', 2);
+				break;
+			default:
+				$.cookie('searchby', 0);
+				break;
+		}
+		if (location == "") {
+			$scope.loadPage();
+		} else {
+			$scope.gotoPage(location);
+		}
+	};
 
-    var config = {
-        headers : {
-            'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
-        }
-    }
+	switch (action) {
+		case 'findbycondition':
+			var service = $.cookie('service');
+			var location = $.cookie('location');
+			var searchby = $.cookie('searchby');
+			var data = $.param({
+		        ln: ['service', 'location', 'searchby'],
+		        lv: [service, location, 'searchby']
+		    });
+		    var config = {
+		        headers : {
+		            'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+		        }
+		    }
+		    $http.post('index.php?c=find&a=getlistdatabycondition', data, config).success(function(data) {
+				json = data;
+				$scope.services = json.data;
+			});
+			break;
+		default:
+			var id_service_type = $.cookie('id_service_type');
+			var searchby = $.cookie('searchby');
 
-	$http.post('index.php?c=find&a=getlistdatabytype', data, config).success(function(data) {
-		json = data;
-		$scope.services = json.data;
-		console.log(data);
-	});
+			var data = $.param({
+		        ln: ['id_service_type', 'searchby'],
+		        lv: [id_service_type, searchby]
+		    });
+
+		    var config = {
+		        headers : {
+		            'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+		        }
+		    }
+
+			$http.post('index.php?c=find&a=getlistdatabytype', data, config).success(function(data) {
+				json = data;
+				$scope.services = json.data;
+			});
+			break;
+	}
 });
 /*=====  End of findresult  ======*/
 
