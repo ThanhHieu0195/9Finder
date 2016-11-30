@@ -318,7 +318,7 @@ myApp.controller('search-result-Ctl', function ($scope, $http, $route, $template
 			var searchby = $.cookie('searchby');
 			var data = $.param({
 		        ln: ['service', 'location', 'searchby'],
-		        lv: [service, location, 'searchby']
+		        lv: [service, location, searchby]
 		    });
 		    var config = {
 		        headers : {

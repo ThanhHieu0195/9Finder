@@ -33,21 +33,37 @@
 			return $this->query();
 		}
 
-		function get_data_service_by_type($type, $start=0, $searchby=0) {
+		function get_data_service_by_type($type, $parameters) {
+			// default
+			$searchby = 0;
+			$start = 0;
 			$limit = $this->_LIMIT['limit'];
-			$query_limit = 	"LIMIT $start, $limit";
 			$query_search = "";
-
+			// searchby
+			if ( !empty($parameters['searchby']) ) {
+				$searchby = $parameters['searchby'];
+			}
+			// start
+			if ( !empty($parameters['start']) ) {
+				$start = $parameters['start'];
+			}
+			// query_limit
+			$query_limit = 	"LIMIT $start, $limit ";
+			// searchby
 			switch ($searchby) {
 				case 1:
-					$query_search = "order by ABS(sv.price) ASC";
+					$query_search = "order by ABS(sv.price) ASC ";
+					if ( empty($query_where) ) {
+						$query_where = "where sv.price > 0 ";
+					} else {
+						$query_where = "AND sv.price > 0 ";
+					}
 					break;
 				
 				default:
-					$query_search = "order by rt.mediumscore DESC";
+					$query_search = "order by rt.mediumscore DESC ";
 					break;
 			}
-
 			$sql = "SELECT sv.id_service, svt.name type, pn.name, sv.house_number, st.name street, w.name ward, dt.name district, pv.name province, sv.website, sv.kinhdo, sv.vido, sv.price price, sv.remark, rt.mediumscore
 				FROM service sv 
 					INNER JOIN service_type svt ON sv.service_code = svt.id_service_type
@@ -60,7 +76,6 @@
 				WHERE sv.service_code = '$type'
 				$query_search
 				$query_limit;";
-
 			$this->setQuery($sql);	
 			$result = $this->query();
 			$arr = array();
@@ -70,24 +85,55 @@
 			return $arr;    
 		}
 
-		function get_data_service_by_condition($service, $location, $start) {
+		function get_data_service_by_condition($service, $parameters) {
 			$limit = $this->_LIMIT['limit'];
-			$query_limit = 	"LIMIT $start, $limit";
+			$query_limit = 	"";
 			$query_where = "";
-			if (!empty($service)) {
-				if (empty($query_where)) {
-					$query_where = "where stk.keyword like '%$service%'";
+			$location = "";
+			$start = 0;
+			$searchby = 0;
+			$query_search = "";
+			// service
+			if ( !empty($service) ) {
+				if ( empty($query_where) ) {
+					$query_where = "where stk.keyword like '%$service%' ";
 				} else {
-					$query_where = "AND stk.keyword like '%$service%'";
+					$query_where = "AND stk.keyword like '%$service%' ";
 				}
 			}
-
+			// location
+			if ( empty($parameters['location']) ) {
+				$location = $parameters['location'];
+			}
 			if (!empty($location)) {
-				if (empty($query_where)) {
-					$query_where = "where dk.keyword like '$location'";
+				if ( empty($query_where) ) {
+					$query_where = "where dk.keyword like '$location' ";
 				} else {
-					$query_where = "AND dk.keyword like '$location'";
+					$query_where = "AND dk.keyword like '$location' ";
 				}
+			}
+			// start
+			if ( !empty($parameters['start']) ) {
+				$start = $parameters['start'];
+			}
+			$query_limit = "LIMIT $start, $limit";
+			// searchby
+			if ( !empty($parameters['searchby']) ) {
+				$searchby = $parameters['searchby'];
+			}
+			switch ($searchby) {
+				case 1:
+					$query_search = "order by ABS(sv.price) ASC ";
+					if ( empty($query_where) ) {
+						$query_where = "where sv.price > 0 ";
+					} else {
+						$query_where = "AND sv.price > 0 ";
+					}
+					break;
+				
+				default:
+					$query_search = "order by rt.mediumscore DESC ";
+					break;
 			}
 
 			$sql = "SELECT DISTINCT sv.id_service, svt.name type, pn.name, sv.house_number, st.name street, w.name ward, dt.name district, pv.name province, sv.website, sv.kinhdo, sv.vido, sv.price price, sv.remark, rt.mediumscore
@@ -102,7 +148,7 @@
 				    INNER JOIN service_type_keyword stk on stk.service_code = sv.service_code
 				    INNER JOIN district_keyword dk on dk.district_code = sv.district_code
 				$query_where
-				order by rt.mediumscore DESC
+				$query_search
 				$query_limit;";
 
 			$this->setQuery($sql);	

@@ -32,13 +32,18 @@
 				$service = $this->parameters['service'];
 				$location = $this->parameters['location'];
 
+				$searchby = 0;
+				if (isset($this->parameters['searchby'])) {
+					$searchby = $this->parameters['searchby'];
+				}
+
 				$model = new service();
 				$start = 0;
 				if (isset($this->parameters['start'])) {
 					$start = $this->parameters['start'];
 				}
-
-				$arr = $model->get_data_service_by_condition($service, $location, $start);
+				$arr = $model->get_data_service_by_condition($service, array('location' => $location, 'start'=>$start, 'searchby' => $searchby));
+				$this->data = $arr; 
 
 				if (is_array($arr) && count($arr) > 0) {
 					$this->data = $arr; 
@@ -63,7 +68,7 @@
 					$start = $this->parameters['start'];
 				}
 
-				$arr = $model->get_data_service_by_type($service_type, $start, $searchby);
+				$arr = $model->get_data_service_by_type($service_type, array('start' => $start, 'searchby' => $searchby));
 				$this->data = $arr; 
 
 				if (is_array($arr) && count($arr) > 0) {
