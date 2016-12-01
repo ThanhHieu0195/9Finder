@@ -316,3 +316,7 @@ div.desc {
     height: 100px;
     background-color: #FFFFFF;
 }
+
+#map {
+    transition: 2s ease;
+}

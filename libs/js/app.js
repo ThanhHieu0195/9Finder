@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ngRoute']);
+var myApp = angular.module('myApp', ['ngRoute', 'ngAnimate']);
 /*==============================
 =            config            =
 ==============================*/
@@ -34,6 +34,7 @@ myApp.config(function($routeProvider){
 myApp.controller('Abc', function($scope, $http, $route, $templateCache, $location){
 	/*----------  css  ----------*/
 	$scope.cssapp = "libs/css/app.css";
+	$scope.cssanimation = "libs/css/animation.css";
 	/*----------  js  ----------*/
 
 	$scope.loadPage = function() {

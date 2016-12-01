@@ -26,7 +26,7 @@ $.get('index.php?c=find&a=getlisttypeservice', function(data) {
 });
 
 // lấy danh sách các dịch vụ theo loại dịch vụ
-$.post('index.php?c=find&a=getlistdatabytype', {ln: ['id_service_type'], lv: ['1']}, function(data, textStatus, xhr) {
+$.post('index.php?c=find&a=getlistdatabytype', {ln: ['id_service_type','searchby'], lv: ['1', 0]}, function(data, textStatus, xhr) {
 	json = $.parseJSON(data);
 	console.log(json);
 });

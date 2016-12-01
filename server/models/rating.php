@@ -52,7 +52,6 @@
 		}
 
 		function get_rating_medium($service_code) {
-			if ($this->exists($service_code)) {
 				$sql = "SELECT SUM(score)/COUNT(*) score_medium FROM `rating` WHERE service_code = '$service_code';";
 				$this->setQuery($sql);
 				$result = $this->query();
@@ -60,7 +59,6 @@
 				if ($row) {
 					return $row['score_medium'];
 				}
-			}
 			return 0;
 		}
 	}
