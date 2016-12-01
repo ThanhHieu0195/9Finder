@@ -72,7 +72,7 @@
 				    INNER JOIN ward w on sv.ward_code = w.id_ward
 				    INNER JOIN district dt on sv.district_code = dt.id_district
 				    INNER JOIN province pv on sv.province_code = pv.id_province
-				    LEFT JOIN (SELECT AVG(score) as mediumscore, service_code from rating group by service_code) rt on sv.service_code = rt.service_code
+				    LEFT JOIN (SELECT AVG(score) as mediumscore, service_code from rating group by service_code) rt on sv.id_service = rt.service_code
 				WHERE sv.service_code = '$type'
 				$query_search
 				$query_limit;";
@@ -125,9 +125,9 @@
 				case 1:
 					$query_search = "order by ABS(sv.price) ASC ";
 					if ( empty($query_where) ) {
-						$query_where = "where sv.price > 0 ";
+						$query_where = "where ABS(sv.price) > 0 ";
 					} else {
-						$query_where = "AND sv.price > 0 ";
+						$query_where = "AND ABS(sv.price) > 0 ";
 					}
 					break;
 				
@@ -144,7 +144,7 @@
 				    INNER JOIN ward w on sv.ward_code = w.id_ward
 				    INNER JOIN district dt on sv.district_code = dt.id_district
 				    INNER JOIN province pv on sv.province_code = pv.id_province
-				    LEFT JOIN (SELECT AVG(score) as mediumscore, service_code from rating group by service_code) rt on sv.service_code = rt.service_code
+				    LEFT JOIN (SELECT AVG(score) as mediumscore, service_code from rating group by service_code) rt on sv.id_service = rt.service_code
 				    INNER JOIN service_type_keyword stk on stk.service_code = sv.service_code
 				    INNER JOIN district_keyword dk on dk.district_code = sv.district_code
 				$query_where
