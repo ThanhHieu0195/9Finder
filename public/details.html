@@ -130,7 +130,6 @@ Fô<div ng-controller="detail-Ctl">
       <div class="media-body">
         <h2 class="media-heading">{{serviceName}}</h2>
         <img src="http://images.clipartpanda.com/pizza-cartoon-tumblr_mke1fhxaav1rk4yfyo1_500.png" alt="symbol" style="float:right;width:200px;height:auto;">
-        <h3>Pizza Place$$$$.</h3>
         <h3>{{serviceProvince}}</h3>
         <button type="button" class="btn btn-default">
          <span class="glyphicon glyphicon glyphicon-bookmark"></span> Save
@@ -165,7 +164,11 @@ Fô<div ng-controller="detail-Ctl">
               $.post('index.php?c=rating&a=set_rating', {ln: ['service_code', 'score'], lv: [$('#idservice').val(), userRating]}, function(data, textStatus, xhr) {
                 json = $.parseJSON(data);
                 console.log(json);
-                alert("Cảm ơn bạn đã đánh giá!");
+                if (json.result == -1){
+                  alert("Bạn chưa đăng nhập!")
+                }else{
+                  alert("Cảm ơn bạn đã đánh giá!");
+                }
               });
                   // lấy rating cho 1 địa điểm
                   $.get('index.php?c=rating&a=get_rating_medium&ln=service_code&lv=' + $('#idservice').val(), function(data, textStatus, xhr) {
@@ -187,8 +190,8 @@ Fô<div ng-controller="detail-Ctl">
     <h2>About</h2>
 
     <ul class="nav nav-tabs">
-      <li><a data-toggle="tab" href="#details#tag_comment">Photos <span class="label label-primary">101</span></a></li>
-      <li><a data-toggle="tab" href="#details#tag_comment">Tips <span class="label label-primary">102</span</a></li>
+      <li><a data-toggle="tab" href="#details#tag_comment">Photos</a></li>
+      <li><a data-toggle="tab" href="#details#tag_comment">Tips</a></li>
     </ul>
 
     <div class="row">
@@ -250,58 +253,6 @@ Fô<div ng-controller="detail-Ctl">
 
   </div>
   <div id="tag_comment" class="tab-pane fade form in active">
-    <div class="panel panel-default" style="padding: 10px;">
-      <div class="panel-body">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="media">
-              <div class="media-left">
-                <img src="http://www.w3schools.com/bootstrap/img_avatar1.png" class="media-object" style="width:60px">
-              </div>
-              <div class="media-body">
-                <h4 class="media-heading">Left-aligned</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="media">
-              <div class="media-left">
-                <img src="http://www.w3schools.com/bootstrap/img_avatar1.png" class="media-object" style="width:60px">
-              </div>
-              <div class="media-body">
-                <h4 class="media-heading">Left-aligned</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="media">
-              <div class="media-left">
-                <img src="http://www.w3schools.com/bootstrap/img_avatar1.png" class="media-object" style="width:60px">
-              </div>
-              <div class="media-body">
-                <h4 class="media-heading">Left-aligned</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="media">
-              <div class="media-left">
-                <img src="http://www.w3schools.com/bootstrap/img_avatar1.png" class="media-object" style="width:60px">
-              </div>
-              <div class="media-body">
-                <h4 class="media-heading">Left-aligned</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
     <div class="panel panel-info">
      <div class="panel-heading">
        <div class="row">
@@ -346,7 +297,7 @@ Fô<div ng-controller="detail-Ctl">
                   <img src="http://www.w3schools.com/bootstrap/img_avatar1.png" class="media-object" style="width:45px">
                 </div>
                 <div class="media-body">
-                  <h4 class="media-heading">{{comment.comment_by}}<small><i>Posted on February 19, 2016 chua co du lieu</i></small></h4>
+                  <h4 class="media-heading">{{comment.comment_by}}</h4>
                   <a class="glyphicon glyphicon-remove" style="float: right;" ng-click="remove_comment($event)" idcomment="{{comment.id_comment}}"></a>
                   <p>{{comment.content}}</p>
                 </div>
@@ -367,57 +318,20 @@ Fô<div ng-controller="detail-Ctl">
        <span class="glyphicon glyphicon-home"></span>
      </div>
      <div class="media-body">
-       <h4 class="media-heading">Pizza 4P's</h4>
-       <p>133 Bui Vien (Pham Ngu Lao)<br>
-        Ho Chi Minh City<br>
-        Ho Chi Minh City<br>
+       <h4 class="media-heading">{{serviceName}}</h4>
+       <p>{{serviceHouseNumber}} {{serviceWard}} {{serviceDistrict}}<br>
+        {{serviceProvince}}<br>
       </p>
     </div>
   </div>
   <hr>
-
-  <div class="media">
-    <div class="media-left">
-      <span class="glyphicon glyphicon-exclamation-sign"></span>
-    </div>
-    <div class="media-body">
-      <p>
-        Welcome to the AAA Spa, open from 9 to 23:30 everyday. Our address...
-      </p>
-    </div>
-  </div>
-  <hr>
-
-  <div class="media">
-   <div class="media-left">
-     <span class="glyphicon glyphicon-dashboard"></span>
-   </div>
-   <div class="media-body">
-     <p class="text-danger">
-       Closed until 9:00 AM tomorrow
-     </p>
-   </div>
- </div>
- <hr>
-
- <div class="media">
-  <div class="media-left">
-    <span class="glyphicon glyphicon-earphone"></span>
-  </div>
-  <div class="media-body">
-    <p >
-      08 3838 5428
-    </p>
-  </div>
-</div>
-<hr>
 
 <div class="media">
  <div class="media-left">
    <span class="glyphicon glyphicon-globe"></span>
  </div>
  <div class="media-body">
-   <a href="http://pizza4ps.com/">http://pizza4ps.com/</a>
+   <a href="http://pizza4ps.com/">{{serviceWebsite}}</a>
  </div>
 </div>
 <hr>
