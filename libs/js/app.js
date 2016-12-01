@@ -195,9 +195,17 @@ myApp.controller('Abc', function($scope, $http, $route, $templateCache, $locatio
 		var service_id = $(e.currentTarget).attr("serviceid");
 		var serviceName = $(e.currentTarget).attr("servicename");
 		var serviceProvince = $(e.currentTarget).attr("serviceprovince");
+		var serviceHouseNumber = $(e.currentTarget).attr("servicehousenumber");
+		var serviceWard = $(e.currentTarget).attr("serviceward");
+		var serviceDistrict = $(e.currentTarget).attr("servicedistrict");
+		var serviceWebsite = $(e.currentTarget).attr("serverwebsite");
 		$.cookie('serviceid', service_id);
 		$.cookie('servicename', serviceName);
 		$.cookie('serviceprovince', serviceProvince);
+		$.cookie('servicehousenumber', serviceHouseNumber);
+		$.cookie('serviceward', serviceWard);
+		$.cookie('servicedistrict', serviceDistrict);
+		$.cookie('servicewebsite', serviceWebsite);
 		$scope.gotoPage("#/details");
 	};
 
@@ -367,6 +375,10 @@ myApp.controller('detail-Ctl', function ($scope, $http, $route, $templateCache, 
 	var service_id = $.cookie('serviceid');
 	var servicename = $.cookie('servicename');
 	var serviceprovince = $.cookie('serviceprovince');
+	var servicehousenumber = $.cookie('servicehousenumber');
+	var serviceward= $.cookie('serviceward');
+	var servicedistrict = $.cookie('servicedistrict');
+	var servicewebsite = $.cookie('servicewebsite');
 
 	var data = $.param({
         ln: ['service_code'],
@@ -381,6 +393,10 @@ myApp.controller('detail-Ctl', function ($scope, $http, $route, $templateCache, 
  	$scope.idservice = service_id;
  	$scope.serviceName = servicename;
  	$scope.serviceProvince = serviceprovince;
+ 	$scope.serviceHouseNumber = servicehousenumber;
+ 	$scope.serviceWard = serviceward;
+ 	$scope.serviceDistrict = servicedistrict;
+ 	$scope.serviceWebsite = servicewebsite;
 	// lấy tất cả comment của dịch vụ
 	$http.get('index.php?c=comment&a=getallcomment&ln=service_code&lv=' + service_id.toString(), config).success(function(data) {
 		json = data;

@@ -104,7 +104,7 @@
 	<div class="row" style="margin-top: 30px;">
 		<div class="col-md-6 form" id="content-service">
 			<div class="panel panel-info scale-fade" ng-repeat="service in services" ng-mouseover="show_map(service.vido, service.kinhdo)">
-				<div class="panel-heading"><a ng-click="details($event)" serviceid="{{service.id_service}}" servicename="{{service.name}}" serviceprovince="{{service.province}}">{{$index+1}}. {{service.name}}</a></div>
+				<div class="panel-heading"><a ng-click="details($event)" serviceid="{{service.id_service}}" servicename="{{service.name}}" serviceprovince="{{service.province}}" servicehousenumber="{{service.house_number}}" serviceward="{{service.ward}}" servicedistrict="{{service.district}}" serverwebsite="{{service.website}}">{{$index+1}}. {{service.name}}</a></div>
 				<input type="text" hidden="true" class="nhi" id="service_id" value="{{service.id_service}}">
 				<div class="panel-body">
 					<div class="media">
